@@ -1,7 +1,7 @@
 import mysql.connector
 
 mydb = mysql.connector.connect(
-	host="http://193.168.146.209/",
+	host="localhost",
     user="admin",
     password="imabiencooke",
     database="imacook",
@@ -15,3 +15,5 @@ cursor.commit()
 cookers = cursor.fetchall()
 
 print(cookers)
+
+cursor.close()
