@@ -1,19 +1,14 @@
-import mysql.connector
+import mysql.connector as MC
 
-mydb = mysql.connector.connect(
-	host="localhost",
-    user="admin",
-    password="imabiencooke",
-    database="imacook",
-)
-
-cursor = mydb.cursor()
-
-cursor.execute("SELECT * FROM cookers")
-cursor.commit()
-
-cookers = cursor.fetchall()
-
-print(cookers)
-
-cursor.close()
+try:
+	conn = MC.connect(host = 'localhost', database = 'imacook', user = 'root', password = "")
+except MC.Error as err:
+	print(err)
+finally:
+	if(conn.is_connected()):
+		conn.cursor.close()
+		conn.close()
+		conn.execute("SELECT * FROM cookers")
+		cookers = conn.fetchall()
+		conn.commit()
+		print(cookers)
