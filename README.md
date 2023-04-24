@@ -1,9 +1,6 @@
-# Programmation Web - IMACS2
-
-## Projet web final : IMACOOK
-
-### Entity Relationship Diagram
-![IMACOOK DATABASE](https://user-images.githubusercontent.com/92529084/229874200-b2f7b8b0-aa7e-47ae-a79c-4acbd0982d8c.svg)
+# IMACOOK
+Programmation Web - IMACS2
+Projet mené dans le cadre du cours de programmation web (école d’ingénieurs IMAC).
 
 ## Install
 ```bash
@@ -14,3 +11,5 @@ pip install mysql-connector-python
 ```bash
 flask --app app --debug run
 ```
+### Entity Relationship Diagram
+![IMACOOK DATABASE](https://user-images.githubusercontent.com/92529084/234112028-2eef4c13-db26-4020-9c3c-98b602ff1b75.png)
