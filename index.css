@@ -40,6 +40,7 @@ a{
     border-radius: 10%;
     text-align: center;
     color: #7F4E00;
+    width: fit-content;
 }
 
 .recipeimg{
@@ -61,7 +62,9 @@ a{
 }
 
 .temps img, .categorie img{
-    margin: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    width: 30px;
 }
 
 #recipe_name{
