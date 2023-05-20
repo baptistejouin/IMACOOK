@@ -4,11 +4,44 @@
 Projet mené dans le cadre du cours de programmation web (école d’ingénieurs IMAC).
 
 ### Entity Relationship Diagram
-![IMACOOK DATABASE](https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81qW7_pMK_wEYukFdvrCWNVlVyCjtr5YWIt35EnZTNbCO29P0Gi6RumYS1zsv_jiGiSlSmZyf8-7O2hYj8ZM_DprMYeQ=w2796-h1582)
+![IMACOOK DATABASE](https://cdn.discordapp.com/attachments/1092781041342763118/1109525732893397143/dbdiagram.io_d.png)
+
+### Endpoints
+#### Recipes
+| status | result | method | endpoint | params |
+| --------- | --------- | --------- | --------- | --------- |
+| | get all recipes | GET | `/recipes` | |
+| | get one recipe | GET | `/recipe/<id>` | |
+| | create one recipe | __POST__ | `/recipes/add` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id` |
+#### Ingredients
+| status | result | method | endpoint | params |
+| --------- | --------- | --------- | --------- | --------- |
+| | get all ingredients | GET | `/ingredients` | |
+| | get one ingredient | GET | `/ingredient/<id>` | |
+#### Categories
+| status | result | method | endpoint | params |
+| --------- | --------- | --------- | --------- | --------- |
+| | get all categories | GET | `/categories` | |
+| | get one category | GET | `/category/<id>` | |
+#### Difficulty
+| status | result | method | endpoint | params |
+| --------- | --------- | --------- | --------- | --------- |
+| | get all difficulties | GET | `/difficulties` | |
+| | get one difficulty | GET | `/difficulty/<id>` | |
+#### Tools
+| status | result | method | endpoint | params |
+| --------- | ---------| --------- | --------- | --------- |
+| | get all tools | GET | `/tools` | |
+| | get one tool | GET | `/tool/<id>` | |
+
+#### Steps
+| status | result | method | endpoint | params |
+| --------- | --------- | --------- | --------- | --------- |
+| | add one or more step | __POST__ | `/steps/add` | `title`, `description`, `step_number`, `id_recipe` |
 
 **⚠️ Note : Before starting, you need sqlite3, Python3, Pip, and Flask.**
 
-## Init DB (first install only)
+### Init DB (first install only)
 ```bash
 # launch the db with sqlite
 sqlite3 database/imacook.db
@@ -26,7 +59,7 @@ SELECT * FROM recipes;
 .exit
 ```
 
-## Launch App
+### Launch App
 ```bash
 # launch the db with sqlite
 sqlite3 database/imacook.db
