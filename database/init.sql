@@ -18,19 +18,6 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cookers`
---
-
-CREATE TABLE IF NOT EXISTS `cookers` (
-  `id` INTEGER PRIMARY KEY,
-  `name` TEXT NOT NULL,
-  `password` TEXT NOT NULL
-);
-
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `difficulty`
 --
 
@@ -61,12 +48,11 @@ CREATE TABLE IF NOT EXISTS `recipes` (
   `id` INTEGER PRIMARY KEY,
   `category_id` INTEGER NOT NULL,
   `difficulty_id` INTEGER NOT NULL,
-  `cooker_id` INTEGER NOT NULL,
+  `cooker` TEXT NOT NULL,
   `name` TEXT NOT NULL,
   `picture` TEXT NOT NULL,
   `cooking_time_s` INTEGER NOT NULL,
   FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  FOREIGN KEY (`cooker_id`) REFERENCES `cookers` (`id`),
   FOREIGN KEY (`difficulty_id`) REFERENCES `difficulty` (`id`)
 );
 

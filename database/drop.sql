@@ -6,4 +6,3 @@ DROP TABLE IF EXISTS `ingredients`;
 DROP TABLE IF EXISTS `tools`;
 DROP TABLE IF EXISTS `categories`;
 DROP TABLE IF EXISTS `difficulty`;
-DROP TABLE IF EXISTS `cookers`;

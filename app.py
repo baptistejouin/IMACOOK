@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-import mysql.connector
+import sqlite3
 
 app = Flask(__name__)
 
@@ -14,9 +14,9 @@ db_config = {
 # define route to get all cookers from the database
 @app.route('/cookers', methods=['GET'])
 def get_cookers():
-    conn = mysql.connector.connect(**db_config)
+    conn = sqlite3.connect('database/imacook.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM cookers")
+    cursor.execute("SELECT * FROM recipes")
     rows = cursor.fetchall()
     conn.close()
 
@@ -25,8 +25,6 @@ def get_cookers():
     for row in rows:
         cooker = {
             'id': row[0],
-            'name': row[1],
-            'password': row[2],
         }
         cookers_list.append(cooker)
 
