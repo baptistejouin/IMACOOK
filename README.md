@@ -1,15 +1,36 @@
 # IMACOOK
-Programmation Web - IMACS2
+
+## Programmation Web - IMACS2
 Projet mené dans le cadre du cours de programmation web (école d’ingénieurs IMAC).
 
-## Install
+### Entity Relationship Diagram
+![IMACOOK DATABASE](https://lh3.googleusercontent.com/u/0/drive-viewer/AFGJ81qW7_pMK_wEYukFdvrCWNVlVyCjtr5YWIt35EnZTNbCO29P0Gi6RumYS1zsv_jiGiSlSmZyf8-7O2hYj8ZM_DprMYeQ=w2796-h1582)
+
+**⚠️ Note : Before starting, you need sqlite3, Python3, Pip, and Flask.**
+
+## Init DB (first install only)
 ```bash
-pip install mysql-connector-python
+# launch the db with sqlite
+sqlite3 database/imacook.db
+
+# create the tables
+.read database/init.sql
+
+# add fake useful data for debug
+.read database/populate.sql
+
+# testing, we should get 3 recipes
+SELECT * FROM recipes;
+
+# exit
+.exit
 ```
-! Note : We need Python3, Pip, Flask, and a local SQL DB (optionnal: phpmyadmin)
-## Launch
+
+## Launch App
 ```bash
+# launch the db with sqlite
+sqlite3 database/imacook.db
+
+# launch python/flask
 flask --app app --debug run
 ```
-### Entity Relationship Diagram
-![IMACOOK DATABASE](https://user-images.githubusercontent.com/92529084/234112028-2eef4c13-db26-4020-9c3c-98b602ff1b75.png)
