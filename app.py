@@ -373,6 +373,28 @@ def delete_step(step_id):
         return step, 200
     else:
         return jsonify({'error': 'step not found'}), 404
+    
+@app.route('/step/add', methods=['POST'])
+def add_step():
+    params = request.get_json()
+
+    id_recipe = params["id_recipe"]
+    step_number = params["step_number"]
+    step_title = params["step_title"]
+    step_description = params["step_description"]
+
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO steps (id_recipe, step_number, title, description) VALUES (?, ?, ?, ?)", (id_recipe, step_number, step_title, step_description))
+    conn.commit()
+
+    step_id = cursor.lastrowid
+
+    step = get_step(step_id)
+
+    conn.close()
+
+    return step
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -44,3 +44,16 @@ curl --request POST \
         ]
     }'
 ```
+
+## Add a step (POST)
+```bash
+curl --request POST \
+  --url 'http://127.0.0.1:5000/step/add' \
+  --header 'Content-Type: application/json' \
+  --data '{
+		"id_recipe": 5,
+        "step_number": 1,
+        "step_title": "Etape 1 (pas facile celle-là)",
+        "step_description": "Faire suer les oignons"
+    }'
+```
