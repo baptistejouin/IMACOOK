@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import sqlite3
 
 app = Flask(__name__)
@@ -44,7 +44,7 @@ def get_recipes():
     # return the list of cookers as a JSON response
     return jsonify(recipes_list)
 
-    # define route to get all recipes from the database
+# define route to get all recipes from the database
 @app.route('/recipe/<int:recipe_id>', methods=['GET'])
 def get_recipe(recipe_id):
     conn = sqlite3.connect('database/imacook.db')
@@ -102,6 +102,46 @@ def get_recipe(recipe_id):
 
     # return the list of cookers as a JSON response
     return jsonify(recipe)
+
+@app.route('/recipes/add', methods=['POST'])
+def add_recipe():
+    params = request.get_json()
+
+    recipe_name = params["name"]
+    recipe_cooker = params["cooker"]
+    recipe_picture = params["picture"]
+    recipe_category_id = params["category_id"]
+    recipe_difficulty_id = params["difficulty_id"]
+    recipe_cooking_time_s = params["cooking_time_s"]
+    recipe_ingredients = params["ingredients"]
+    recipe_steps = params["steps"]
+    recipe_tools = params["tools"]
+
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO recipes (name, cooker, picture, category_id, difficulty_id, cooking_time_s) VALUES (?, ?, ?, ?, ?, ?)", (recipe_name, recipe_cooker, recipe_picture, recipe_category_id, recipe_difficulty_id, recipe_cooking_time_s))
+    conn.commit()
+
+    recipe_id = cursor.lastrowid
+
+    for ingredient in recipe_ingredients:
+        cursor.execute("INSERT INTO recipe_ingredient (id_recipe, id_ingredient, quantity) VALUES (?, ?, ?)", (recipe_id, ingredient["id"], ingredient["quantity"]))
+        conn.commit()
+
+    for tool in recipe_tools:
+        cursor.execute("INSERT INTO recipe_tool (id_recipe, id_tool) VALUES (?, ?)", (recipe_id, tool["id"]))
+        conn.commit()
+    
+    for step in recipe_steps:
+        cursor.execute("INSERT INTO steps (id_recipe, step_number, title, description) VALUES (?, ?, ?, ?)", (recipe_id, step["step_number"], step["title"], step["description"]))
+        conn.commit()
+
+    recipe = get_recipe(recipe_id)
+
+    conn.close()
+
+    return jsonify(recipe)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
