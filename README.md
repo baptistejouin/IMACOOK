@@ -39,6 +39,7 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Steps
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
+| OK | get one step | GET | `/step/<id>` | |
 | | update the title and description of one step | POST | `/step`
 | | delete one step | POST | `/step/delete/<id>` | |
 | | create one step | POST | `/step/add` | `[{id_recipe, title, description, step_number}]` |

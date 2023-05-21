@@ -260,7 +260,7 @@ def get_difficulties():
     for difficulty in difficulties_rows:
         difficulty_data = {
             'id': difficulty[0],
-            'name': difficulty[1]
+            'label': difficulty[1]
         }
         difficulties_list.append(difficulty_data)
 
@@ -282,7 +282,7 @@ def get_difficulty(difficulty_id):
 
     difficulty_data = {
         'id': difficulty_row[0],
-        'name': difficulty_row[1]
+        'label': difficulty_row[1]
     }
 
     conn.close()
@@ -331,6 +331,30 @@ def get_tool(tool_id):
 
     # return the tool
     return jsonify(tool_data)
+
+# define route to get a specific step from the database
+@app.route('/step/<int:step_id>', methods=['GET'])
+def get_step(step_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM steps WHERE id = ? LIMIT 1", (step_id,))
+    step_row = cursor.fetchone()
+
+    if not step_row:
+       return jsonify({'error': 'step not found'}), 404
+
+    step_data = {
+        'id': step_row[0],
+        'id_recipe': step_row[1],
+        'step_number': step_row[2],
+        'title': step_row[3],
+        'description': step_row[4]
+    }
+
+    conn.close()
+
+    # return the step
+    return jsonify(step_data)
 
 if __name__ == '__main__':
     app.run(debug=True)
