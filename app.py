@@ -13,7 +13,7 @@ db_config = {
     'database': 'imacook'
 }
 
-# define route to get all recipes from the database
+# get all recipes
 @app.route('/recipes', methods=['GET'])
 def get_recipes():
     conn = sqlite3.connect('database/imacook.db')
@@ -46,7 +46,7 @@ def get_recipes():
     # return the list of cookers as a JSON response
     return jsonify(recipes_list)
   
-# define route to get a specific recipe from the database
+# get one recipe
 @app.route('/recipe/<int:recipe_id>', methods=['GET'])
 def get_recipe(recipe_id):
     conn = sqlite3.connect('database/imacook.db')
@@ -77,17 +77,33 @@ def get_recipe(recipe_id):
             }
             tool_list.append(tool_data)
 
-        # get needed ingredients
-        cursor.execute("SELECT ingredients.id, ingredients.name FROM recipe_ingredient JOIN ingredients ON ingredients.id=recipe_ingredient.id_ingredient WHERE id_recipe = ?", (recipe_id,))
+        # get ingredients
+        cursor.execute("SELECT ingredients.id, ingredients.name, recipe_ingredient.quantity, ingredients.unit FROM recipe_ingredient JOIN ingredients ON ingredients.id=recipe_ingredient.id_ingredient WHERE id_recipe = ?", (recipe_id,))
         ingredients = cursor.fetchall()
-        # tools conversion from table to object
+        # ingredients conversion from table to object
         ingredient_list = []
         for ingredient in ingredients:
             ingredient_data = {
                 'id': ingredient[0],
-                'name': ingredient[1]
+                'name': ingredient[1],
+                'quantity': ingredient[2],
+                'unit': ingredient[3],
             }
             ingredient_list.append(ingredient_data)
+        
+        # get steps
+        cursor.execute("SELECT * FROM steps WHERE id_recipe = ?", (recipe_id,))
+        steps = cursor.fetchall()
+        # steps conversion from table to object
+        step_list = []
+        for step in steps:
+            step_data = {
+                'id': step[0],
+                'step_number': step[2],
+                'title': step[3],
+                'description': step[4]
+            }
+            step_list.append(step_data)
 
         recipe = {
                 'id': recipe[0],
@@ -98,7 +114,8 @@ def get_recipe(recipe_id):
                 'cooking_time_s': recipe[6],
                 'picture': recipe[5],
                 'tools': tool_list,
-                'ingredients': ingredient_list
+                'ingredients': ingredient_list,
+                'steps': step_list
             }
 
         conn.close()
@@ -107,7 +124,7 @@ def get_recipe(recipe_id):
         conn.close()
         return jsonify({'error': 'Recipe not found'}), 404
 
-# define route to delete a specific recipe
+# delete one recipe
 @app.route('/recipe/<int:recipe_id>', methods=['DELETE'])
 def delete_recipe(recipe_id):
     # Récupérer la recette avant de la supprimer
@@ -164,7 +181,7 @@ def add_recipe():
 
     return recipe
 
-# define route to get all ingredients from the database
+# get all ingredients
 @app.route('/ingredients', methods=['GET'])
 def get_ingredients():
     conn = sqlite3.connect('database/imacook.db')
@@ -185,7 +202,7 @@ def get_ingredients():
     # return the list of ingredients
     return jsonify(ingredients_list)
 
-# define route to get a specific ingredient from the database
+#get one ingredient
 @app.route('/ingredient/<int:ingredient_id>', methods=['GET'])
 def get_ingredient(ingredient_id):
     conn = sqlite3.connect('database/imacook.db')
@@ -206,7 +223,7 @@ def get_ingredient(ingredient_id):
     # return the ingredient
     return jsonify(ingredient_data), 200
 
-# define route to get all categorys from the database
+#get all categories
 @app.route('/categories', methods=['GET'])
 def get_categories():
     conn = sqlite3.connect('database/imacook.db')
@@ -227,7 +244,7 @@ def get_categories():
     # return the list of categories
     return jsonify(categories_list)
 
-# define route to get a specific category from the database
+# get one category
 @app.route('/category/<int:category_id>', methods=['GET'])
 def get_category(category_id):
     conn = sqlite3.connect('database/imacook.db')
@@ -248,7 +265,7 @@ def get_category(category_id):
     # return the category
     return jsonify(category_data), 200
 
-# define route to get all difficulties from the database
+# get all difficulties
 @app.route('/difficulties', methods=['GET'])
 def get_difficulties():
     conn = sqlite3.connect('database/imacook.db')
@@ -269,7 +286,7 @@ def get_difficulties():
     # return the list of difficulties
     return jsonify(difficulties_list)
 
-# define route to get a specific difficulty from the database
+# get one difficulty
 @app.route('/difficulty/<int:difficulty_id>', methods=['GET'])
 def get_difficulty(difficulty_id):
     conn = sqlite3.connect('database/imacook.db')
@@ -290,7 +307,7 @@ def get_difficulty(difficulty_id):
     # return the difficulty
     return jsonify(difficulty_data)
 
-# define route to get all tools from the database
+# get all tools
 @app.route('/tools', methods=['GET'])
 def get_tools():
     conn = sqlite3.connect('database/imacook.db')
@@ -311,7 +328,7 @@ def get_tools():
     # return the list of tools
     return jsonify(tools_list)
 
-# define route to get a specific tool from the database
+# get one tool
 @app.route('/tool/<int:tool_id>', methods=['GET'])
 def get_tool(tool_id):
     conn = sqlite3.connect('database/imacook.db')
@@ -332,7 +349,7 @@ def get_tool(tool_id):
     # return the tool
     return jsonify(tool_data), 200
 
-# define route to get a specific step from the database
+# get one step
 @app.route('/step/<int:step_id>', methods=['GET'])
 def get_step(step_id):
     conn = sqlite3.connect('database/imacook.db')
@@ -356,7 +373,7 @@ def get_step(step_id):
     # return the step
     return jsonify(step_data), 200
 
-# define route to delete a specific step
+# delete one step
 @app.route('/step/<int:step_id>', methods=['DELETE'])
 def delete_step(step_id):
     # Récupérer la recette avant de la supprimer
@@ -374,6 +391,7 @@ def delete_step(step_id):
     else:
         return jsonify({'error': 'step not found'}), 404
     
+# add one step
 @app.route('/step/add', methods=['POST'])
 def add_step():
     params = request.get_json()
@@ -396,6 +414,7 @@ def add_step():
 
     return step
 
+# update one step
 @app.route('/step/<int:step_id>', methods=['PUT'])
 def update_step(step_id):
     # Vérifier si l'étape existe
