@@ -3,7 +3,7 @@
 ## Add a recipe (POST)
 ```bash
 curl --request POST \
-  --url 'http://127.0.0.1:5000/recipes/add' \
+  --url 'http://127.0.0.1:5000/recipe/add' \
   --header 'Content-Type: application/json' \
   --data '{
         "name": "Poulet au curry",
