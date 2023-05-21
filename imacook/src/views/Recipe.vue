@@ -87,71 +87,93 @@
           </div>
         </div>
       </div>
-      <div class="ingredients_recette">
-        <div class="ingredients_title">
-          <div class="title">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.87 69.69">
-              <g id="Calque_2" data-name="Calque 2">
-                <g id="Calque_1-2" data-name="Calque 1">
-                  <path
-                    class="cls-1"
-                    d="M69.87,29.3a41.57,41.57,0,0,1-24.36,37,42.52,42.52,0,0,1-4,1.56c-.62.22-1.26.41-1.9.58a41.46,41.46,0,0,1-6.83,1.29h-.17a39.15,39.15,0,0,1-4.44-1.23c-.55-.18-1.1-.38-1.64-.59-1.13-.44-2.23-.91-3.25-1.41A41.12,41.12,0,0,1,0,29.25c0-.24,0-.46,0-.7a.48.48,0,0,1,.16-.35.49.49,0,0,1,.36-.13,41.08,41.08,0,0,1,23.25,8.5,40.94,40.94,0,0,1,7.15,7c.83,1,1.61,2.12,2.34,3.22A41.58,41.58,0,0,1,45.7,34.91a41.32,41.32,0,0,1,21.74-6.16c.65,0,1.3,0,1.94,0A.51.51,0,0,1,69.87,29.3Z"
-                  />
-                  <path
-                    class="cls-1"
-                    d="M46.71,25.12a.5.5,0,0,1-.22.47A40,40,0,0,0,35.16,36.53a.52.52,0,0,1-.41.21.49.49,0,0,1-.41-.21A40.44,40.44,0,0,0,22.7,25.41a.49.49,0,0,1-.23-.47A41.39,41.39,0,0,1,34.22.14a.51.51,0,0,1,.71,0A41.35,41.35,0,0,1,46.71,25.12Z"
-                  />
-                </g>
-              </g>
-            </svg>
-            <h2>Ingrédients</h2>
-          </div>
-          <div class="number_selector">
-            <button id="removeGuest">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.59 45.59">
+      <div class="right_section">
+        <div class="ingredients_recette">
+          <div class="ingredients_title">
+            <div class="title">
+              <svg class="icon_title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.87 69.69">
                 <g id="Calque_2" data-name="Calque 2">
                   <g id="Calque_1-2" data-name="Calque 1">
                     <path
                       class="cls-1"
-                      d="M31.52,0H14.07A14.09,14.09,0,0,0,0,14.08V31.51A14.09,14.09,0,0,0,14.07,45.59H31.52A14.09,14.09,0,0,0,45.59,31.51V14.08A14.09,14.09,0,0,0,31.52,0ZM41,30.87A10.15,10.15,0,0,1,30.87,41H14.72A10.15,10.15,0,0,1,4.58,30.87V14.72A10.14,10.14,0,0,1,14.72,4.59H30.87A10.14,10.14,0,0,1,41,14.72Z"
+                      d="M69.87,29.3a41.57,41.57,0,0,1-24.36,37,42.52,42.52,0,0,1-4,1.56c-.62.22-1.26.41-1.9.58a41.46,41.46,0,0,1-6.83,1.29h-.17a39.15,39.15,0,0,1-4.44-1.23c-.55-.18-1.1-.38-1.64-.59-1.13-.44-2.23-.91-3.25-1.41A41.12,41.12,0,0,1,0,29.25c0-.24,0-.46,0-.7a.48.48,0,0,1,.16-.35.49.49,0,0,1,.36-.13,41.08,41.08,0,0,1,23.25,8.5,40.94,40.94,0,0,1,7.15,7c.83,1,1.61,2.12,2.34,3.22A41.58,41.58,0,0,1,45.7,34.91a41.32,41.32,0,0,1,21.74-6.16c.65,0,1.3,0,1.94,0A.51.51,0,0,1,69.87,29.3Z"
                     />
-                    <path
-                      class="cls-2"
-                      d="M32.28,22.53v.55a2.6,2.6,0,0,1-2.6,2.59H15.9a2.59,2.59,0,0,1-2.59-2.59v-.55a2.6,2.6,0,0,1,2.59-2.6H29.68A2.61,2.61,0,0,1,32.28,22.53Z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </button>
-            <p class="guest">1</p>
-            <button id="addGuest">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.6 45.59">
-                <g id="Calque_2" data-name="Calque 2">
-                  <g id="Calque_1-2" data-name="Calque 1">
                     <path
                       class="cls-1"
-                      d="M32.29,22.51v.55a2.61,2.61,0,0,1-2.6,2.6h-4v4a2.59,2.59,0,0,1-2.59,2.59h-.55a2.6,2.6,0,0,1-2.6-2.59v-4h-4a2.6,2.6,0,0,1-2.59-2.6v-.55a2.59,2.59,0,0,1,2.59-2.59h4v-4a2.61,2.61,0,0,1,2.6-2.6h.55a2.6,2.6,0,0,1,2.59,2.6v4h4A2.6,2.6,0,0,1,32.29,22.51Z"
-                    />
-                    <path
-                      class="cls-2"
-                      d="M31.52,0H14.08A14.09,14.09,0,0,0,0,14.08V31.51A14.09,14.09,0,0,0,14.08,45.59H31.52A14.09,14.09,0,0,0,45.6,31.51V14.08A14.09,14.09,0,0,0,31.52,0ZM41,30.87A10.14,10.14,0,0,1,30.88,41H14.72A10.14,10.14,0,0,1,4.59,30.87V14.72A10.14,10.14,0,0,1,14.72,4.59H30.88A10.14,10.14,0,0,1,41,14.72Z"
+                      d="M46.71,25.12a.5.5,0,0,1-.22.47A40,40,0,0,0,35.16,36.53a.52.52,0,0,1-.41.21.49.49,0,0,1-.41-.21A40.44,40.44,0,0,0,22.7,25.41a.49.49,0,0,1-.23-.47A41.39,41.39,0,0,1,34.22.14a.51.51,0,0,1,.71,0A41.35,41.35,0,0,1,46.71,25.12Z"
                     />
                   </g>
                 </g>
               </svg>
-            </button>
+              <h2>Ingrédients</h2>
+            </div>
+            <div class="number_selector">
+              <button id="removeGuest" @click="decrement">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.59 45.59">
+                  <g id="Calque_2" data-name="Calque 2">
+                    <g id="Calque_1-2" data-name="Calque 1">
+                      <path
+                        class="cls-1"
+                        d="M31.52,0H14.07A14.09,14.09,0,0,0,0,14.08V31.51A14.09,14.09,0,0,0,14.07,45.59H31.52A14.09,14.09,0,0,0,45.59,31.51V14.08A14.09,14.09,0,0,0,31.52,0ZM41,30.87A10.15,10.15,0,0,1,30.87,41H14.72A10.15,10.15,0,0,1,4.58,30.87V14.72A10.14,10.14,0,0,1,14.72,4.59H30.87A10.14,10.14,0,0,1,41,14.72Z"
+                      />
+                      <path
+                        class="cls-2"
+                        d="M32.28,22.53v.55a2.6,2.6,0,0,1-2.6,2.59H15.9a2.59,2.59,0,0,1-2.59-2.59v-.55a2.6,2.6,0,0,1,2.59-2.6H29.68A2.61,2.61,0,0,1,32.28,22.53Z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </button>
+              <p class="guest">{{ count }} personne{{ count >1 ? "s" : "" }}</p>
+              <button id="addGuest" @click="increment">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.6 45.59">
+                  <g id="Calque_2" data-name="Calque 2">
+                    <g id="Calque_1-2" data-name="Calque 1">
+                      <path
+                        class="cls-1"
+                        d="M32.29,22.51v.55a2.61,2.61,0,0,1-2.6,2.6h-4v4a2.59,2.59,0,0,1-2.59,2.59h-.55a2.6,2.6,0,0,1-2.6-2.59v-4h-4a2.6,2.6,0,0,1-2.59-2.6v-.55a2.59,2.59,0,0,1,2.59-2.59h4v-4a2.61,2.61,0,0,1,2.6-2.6h.55a2.6,2.6,0,0,1,2.59,2.6v4h4A2.6,2.6,0,0,1,32.29,22.51Z"
+                      />
+                      <path
+                        class="cls-2"
+                        d="M31.52,0H14.08A14.09,14.09,0,0,0,0,14.08V31.51A14.09,14.09,0,0,0,14.08,45.59H31.52A14.09,14.09,0,0,0,45.6,31.51V14.08A14.09,14.09,0,0,0,31.52,0ZM41,30.87A10.14,10.14,0,0,1,30.88,41H14.72A10.14,10.14,0,0,1,4.59,30.87V14.72A10.14,10.14,0,0,1,14.72,4.59H30.88A10.14,10.14,0,0,1,41,14.72Z"
+                      />
+                    </g>
+                  </g>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="ingredients_container">
+            <div v-for="ingredient in recipeData.ingredients" class="ingredient">
+              <p>{{ ingredient.name }}</p>
+              <p class="strong">
+                <span>{{ ingredient.quantity * count }}</span> {{ ingredient.unit }}
+              </p>
+            </div>
           </div>
         </div>
-        <div class="ingredients_container">
-          <div v-for="ingredient in recipeData.ingredients" class="ingredient">
-            <p>{{ ingredient.name }}</p>
-            <p class="strong">
-              <span>{{ ingredient.quantity }}</span> {{ ingredient.unit }}
-            </p>
+
+        <div class="ingredients_recette">
+          <div class="ingredients_title">
+            <div class="title">
+              <svg class="icon_title" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 5.5V38.5H15.7V32.0999H12.5C11.1193 32.0999 10 30.9806 10 29.5999C10 28.2192 11.1193 27.0999 12.5 27.0999H15.7V20.7L12.5 20.7001C11.1193 20.7001 10 19.5808 10 18.2001C9.99998 16.8194 11.1193 15.7001 12.5 15.7001L15.6997 15.7V12.5C15.6997 11.1193 16.819 10 18.1997 10C19.5804 10 20.6997 11.1193 20.6997 12.5V15.7H27.1004V12.5C27.1004 11.1193 28.2197 10 29.6004 10C30.9811 10 32.1004 11.1193 32.1004 12.5V15.7H38.5V5.5H5.5ZM39.86 20.7C41.8705 20.7 43.5 19.0702 43.5 17.06V4.14C43.5 2.12977 41.8705 0.5 39.86 0.5H4.14C2.12968 0.5 0.5 2.12968 0.5 4.14V39.86C0.5 41.8705 2.12977 43.5 4.14 43.5H17.06C19.0702 43.5 20.7 41.8705 20.7 39.86V20.7H39.86Z" fill="#7F4F12"/>
+</svg>
+
+              <h2>Ustensile</h2>
+            </div>
+          </div>
+          <div class="ingredients_container">
+            <div v-for="tool in recipeData.tools" class="ingredient">
+              <p>{{ tool.name }}</p>
+              <p class="strong">
+                <span>{{ tool.quantity }}</span> {{ tool.unit }}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
     </div>
+  </div>
   </main>
 </template>
 
@@ -165,6 +187,7 @@ const route = useRoute();
 const recipeId = route.params.id;
 
 const recipeData = ref([]);
+const count = ref(1)
 
 function getData() {
   axios
@@ -177,10 +200,25 @@ function getData() {
     });
 }
 
+function increment() {
+    count.value++
+}
+function decrement() {
+  if(count.value > 1) {
+  count.value--
+  }
+}
+
 getData();
 </script>
 
 <style scoped>
+.right_section {
+  width: 46%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 .header_recette {
   width: 100%;
   position: relative;
@@ -336,9 +374,7 @@ getData();
   font-size: var(--normal-font-size);
   color: var(--first-color);
 }
-
 .ingredients_recette {
-  width: 46%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -356,8 +392,8 @@ getData();
   align-items: center;
 }
 .ingredients_title .title svg {
-  width: var(--icon_max_height);
-  height: var(--icon_max_height);
+  width: var(--icon_normal_height);
+  height: var(--icon_normal_height);
   fill: var(--first-color);
   margin: 0px 8px 0px 0px;
 }
@@ -406,7 +442,7 @@ getData();
   width: 100%;
   margin-bottom: 15px;
   border-radius: var(--button-radius);
-  background-color: var(--third-color);
+  background-color: white;
   box-shadow: rgba(149, 157, 165, 0.08) 0px 8px 24px;
 }
 .ingredient p {
