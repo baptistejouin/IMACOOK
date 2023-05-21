@@ -11,7 +11,7 @@ Projet mené dans le cadre du cours de programmation web (école d’ingénieurs
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
 | | get all recipes | GET | `/recipes` | |
-| | get one recipe | GET | `/recipe/<id>` | |
+| OK | get one recipe | GET | `/recipe/<id>` | |
 | | create one recipe | __POST__ | `/recipes/add` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id` |
 #### Ingredients
 | status | result | method | endpoint | params |
