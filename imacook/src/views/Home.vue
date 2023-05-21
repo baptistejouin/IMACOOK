@@ -6,30 +6,34 @@
       <h2>Les recettes populaires</h2>
       <div>
         <label for="categories">Filtre</label>
-        <select id="categories">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+        <select id="categories" v-model="isSelected">
+          <option value="-1">Tout afficher</option>
+          <template v-for="category in categoriesData" >
+            <option :value="category.id">{{ category.name}}</option>
+          </template>
         </select>
-      </div>
+    </div>
     </div>
     <div class="listrecipes">
-      <div v-for="recipe in recipesData" class="recipe">
-        <a :href="`/recipe/${recipe.id}`">
-          <div class="recipeimg">
-            <img :src="`${recipe.picture}`" :alt="`${recipe.name}`" />
-          </div>
-          <p id="recipe_name">{{ recipe.name }}</p>
-          <div class="temps">
-            <img src="image/🦆 icon _alarm_.png" alt="temps de préparation" />
-            <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }} min</p>
-          </div>
-          <div class="categorie">
-            <img src="image/categorie.png" alt="catégorie" />
-            <p id="recipe_cat">{{ recipe.category }}</p>
-          </div>
-        </a>
-      </div>
+      <template v-for="recipe in recipesData">
+        <div v-show="(isSelected == recipe.category.id) || (isSelected == -1)" class="recipe">
+
+          <a :href="`/recipe/${recipe.id}`">
+            <div class="recipeimg">
+              <img :src="`${recipe.picture}`" :alt="`${recipe.name}`" />
+            </div>
+            <p id="recipe_name">{{ recipe.name }}</p>
+            <div class="temps">
+              <img src="image/🦆 icon _alarm_.png" alt="temps de préparation" />
+              <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }} min</p>
+            </div>
+            <div class="categorie">
+              <img src="image/categorie.png" alt="catégorie" />
+              <p id="recipe_cat">{{ recipe.category.name }}</p>
+            </div>
+          </a>
+        </div>
+        </template>
     </div>
   </main>
 </template>
@@ -57,7 +61,6 @@ a {
   border-radius: 10%;
   text-align: center;
   color: #7f4e00;
-  /* width: fit-content; */
 }
 
 .recipeimg {
@@ -111,6 +114,8 @@ import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
 
 const recipesData = ref([]);
+const categoriesData = ref([]);
+const isSelected = ref("-1");
 
 function getData() {
   axios
@@ -123,5 +128,18 @@ function getData() {
     });
 }
 
+function getCategories() {
+  axios
+  .get(`http://127.0.0.1:5000/categories`)
+    .then((response) => {
+      categoriesData.value = response.data;
+      console.log(categoriesData.value);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
 getData();
+getCategories();
 </script>
