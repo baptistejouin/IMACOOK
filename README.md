@@ -64,7 +64,7 @@ SELECT * FROM recipes;
 # exit
 .exit
 ```
-### Init the front
+### Init the front (first install only)
 ```bash
 cd imacook
 
@@ -82,5 +82,5 @@ sqlite3 database/imacook.db
 flask --app app --debug run
 
 # lauch the front
-cd imacook && npm dev
+cd imacook && npm run dev
 ```
