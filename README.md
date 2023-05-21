@@ -28,8 +28,8 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Difficulty
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
-| | get all difficulties | GET | `/difficulties` | |
-| | get one difficulty | GET | `/difficulty/<id>` | |
+| OK | get all difficulties | GET | `/difficulties` | |
+| OK | get one difficulty | GET | `/difficulty/<id>` | |
 #### Tools
 | status | result | method | endpoint | params |
 | --------- | ---------| --------- | --------- | --------- |

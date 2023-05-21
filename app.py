@@ -248,6 +248,48 @@ def get_category(category_id):
     # return the category
     return jsonify(category_data)
 
+# define route to get all difficulties from the database
+@app.route('/difficulties', methods=['GET'])
+def get_difficulties():
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM difficulty")
+    difficulties_rows = cursor.fetchall()
+
+    difficulties_list = []
+    for difficulty in difficulties_rows:
+        difficulty_data = {
+            'id': difficulty[0],
+            'name': difficulty[1]
+        }
+        difficulties_list.append(difficulty_data)
+
+    conn.close()
+
+    # return the list of difficulties
+    return jsonify(difficulties_list)
+
+# define route to get a specific difficulty from the database
+@app.route('/difficulty/<int:difficulty_id>', methods=['GET'])
+def get_difficulty(difficulty_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, label FROM difficulty WHERE id = ? LIMIT 1", (difficulty_id,))
+    difficulty_row = cursor.fetchone()
+
+    if not difficulty_row:
+       return jsonify({'error': 'difficulty not found'}), 404
+
+    difficulty_data = {
+        'id': difficulty_row[0],
+        'name': difficulty_row[1]
+    }
+
+    conn.close()
+
+    # return the difficulty
+    return jsonify(difficulty_data)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
