@@ -1,62 +1,44 @@
 <template>
-  <div class="entete">
-    <h1>IMACOOK</h1>
-    <a href="index.html" class="accueil">Accueil</a>
-    <div class="search">
-      <label for="site-search"></label>
-      <input type="search" id="site-search" name="q" />
-      <a href="recherche.html">
-        <img src="image/🦆 icon _search_.png" alt="rechercher" />
-      </a>
+  <main>
+
+    <Navbar class="dark"/>
+    <div class="titre">
+      <h2>Les recettes populaires</h2>
+      <div>
+        <label for="categories">Filtre</label>
+        <select id="categories" v-model="isSelected">
+          <option value="-1">Tout afficher</option>
+          <template v-for="category in categoriesData" >
+            <option :value="category.id">{{ category.name}}</option>
+          </template>
+        </select>
     </div>
-    <a href="ajout.html">
-      <img
-        src="image/ajoutrecette.png"
-        width="40px"
-        alt="ajouter une recette"
-      />
-    </a>
-  </div>
-  <div class="titre">
-    <h2>Les recettes populaires</h2>
-    <div>
-      <label for="categories">Filtre</label>
-      <select id="categories">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </select>
     </div>
-  </div>
-  <div class="listrecipes">
-    <div v-for="recipe in recipesData" class="recipe">
-      <a :href="`/recipe/${recipe.id}`">
-        <div class="recipeimg">
-          <img :src="`${recipe.picture}`" :alt="`${recipe.name}`" />
+    <div class="listrecipes">
+      <template v-for="recipe in recipesData">
+        <div v-show="(isSelected == recipe.category.id) || (isSelected == -1)" class="recipe">
+
+          <a :href="`/recipe/${recipe.id}`">
+            <div class="recipeimg">
+              <img :src="`${recipe.picture}`" :alt="`${recipe.name}`" />
+            </div>
+            <p id="recipe_name">{{ recipe.name }}</p>
+            <div class="temps">
+              <img src="image/🦆 icon _alarm_.png" alt="temps de préparation" />
+              <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }} min</p>
+            </div>
+            <div class="categorie">
+              <img src="image/categorie.png" alt="catégorie" />
+              <p id="recipe_cat">{{ recipe.category.name }}</p>
+            </div>
+          </a>
         </div>
-        <p id="recipe_name">{{ recipe.name }}</p>
-        <div class="temps">
-          <img src="image/🦆 icon _alarm_.png" alt="temps de préparation" />
-          <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }} min</p>
-        </div>
-        <div class="categorie">
-          <img src="image/categorie.png" alt="catégorie" />
-          <p id="recipe_cat">{{ recipe.category }}</p>
-        </div>
-      </a>
+        </template>
     </div>
-  </div>
+  </main>
 </template>
 
 <style scope>
-.entete {
-  display: flex;
-  justify-content: space-between;
-  margin-right: 20px;
-  margin-left: 20px;
-  align-items: center;
-}
-
 .search {
   display: flex;
   align-items: center;
@@ -67,25 +49,18 @@ a {
   text-decoration: none;
 }
 
-.entete h1,
-.entete a {
-  font-size: 25px;
-  color: #d18000;
-  text-align: center;
-  font-weight: normal;
-}
-
 .h1 {
   margin: none;
 }
 
 .recipe {
   background-color: white;
-  width: 20vw;
+  display: flex;
+  justify-content: center;
+  width: calc((100% / 3) - 4vw);
   border-radius: 10%;
   text-align: center;
   color: #7f4e00;
-  width: fit-content;
 }
 
 .recipeimg {
@@ -119,22 +94,28 @@ a {
 }
 
 .titre {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin: 30px;
 }
 
 .listrecipes {
+  width: 100%;
   display: flex;
   justify-content: space-around;
+  gap: 1.25rem;
 }
 </style>
 
 <script setup>
 import { ref } from "vue";
+import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
 
 const recipesData = ref([]);
+const categoriesData = ref([]);
+const isSelected = ref("-1");
 
 function getData() {
   axios
@@ -147,5 +128,18 @@ function getData() {
     });
 }
 
+function getCategories() {
+  axios
+  .get(`http://127.0.0.1:5000/categories`)
+    .then((response) => {
+      categoriesData.value = response.data;
+      console.log(categoriesData.value);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
 getData();
+getCategories();
 </script>

@@ -25,15 +25,21 @@ def get_recipes():
     recipes_list = []
     for recipe_row in recipes_rows:
 
-        cursor.execute("SELECT name FROM categories WHERE id = ? LIMIT 1", (recipe_row[1],))
+        cursor.execute("SELECT id, name FROM categories WHERE id = ? LIMIT 1", (recipe_row[1],))
         category_row = cursor.fetchone()
-        category = category_row[0] if category_row else None
+        if category_row:
+            category_data = {
+                'id': category_row[0],
+                'name': category_row[1]
+            }
+        else:
+            category_data = None
 
 
         recipe = {
             'id': recipe_row[0],
             'name': recipe_row[4],
-            'category': category,
+            'category': category_data,
             # 'difficulty': recipe_row[2],
             'cooker': recipe_row[3],
             'cooking_time_s': recipe_row[6],
@@ -92,7 +98,7 @@ def get_recipe(recipe_id):
             ingredient_list.append(ingredient_data)
         
         # get steps
-        cursor.execute("SELECT * FROM steps WHERE id_recipe = ?", (recipe_id,))
+        cursor.execute("SELECT * FROM steps WHERE id_recipe = ? ORDER BY step_number", (recipe_id,))
         steps = cursor.fetchall()
         # steps conversion from table to object
         step_list = []
