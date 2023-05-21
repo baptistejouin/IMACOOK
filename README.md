@@ -18,8 +18,8 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Ingredients
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
-| | get all ingredients | GET | `/ingredients` | |
-| | get one ingredient | GET | `/ingredient/<id>` | |
+| OK | get all ingredients | GET | `/ingredients` | |
+| OK | get one ingredient | GET | `/ingredient/<id>` | |
 #### Categories
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
