@@ -23,8 +23,8 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Categories
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
-| | get all categories | GET | `/categories` | |
-| | get one category | GET | `/category/<id>` | |
+| OK | get all categories | GET | `/categories` | |
+| OK | get one category | GET | `/category/<id>` | |
 #### Difficulty
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
