@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import sqlite3
+import sys
 
 app = Flask(__name__)
 CORS(app)
@@ -108,7 +109,7 @@ def get_recipe(recipe_id):
         return jsonify({'error': 'Recipe not found'}), 404
 
 # define route to delete a specific recipe
-@app.route('/recipe/delete/<int:recipe_id>', methods=['DELETE'])
+@app.route('/recipe/<int:recipe_id>', methods=['DELETE'])
 def delete_recipe(recipe_id):
     # Récupérer la recette avant de la supprimer
     response = get_recipe(recipe_id)
@@ -125,7 +126,7 @@ def delete_recipe(recipe_id):
     else:
         return jsonify({'error': 'Recipe not found'}), 404
 
-@app.route('/recipe/add', methods=['POST'])
+@app.route('/recipe', methods=['POST'])
 def add_recipe():
     params = request.get_json()
 
@@ -357,7 +358,7 @@ def get_step(step_id):
     return jsonify(step_data), 200
 
 # define route to delete a specific step
-@app.route('/step/delete/<int:step_id>', methods=['DELETE'])
+@app.route('/step/<int:step_id>', methods=['DELETE'])
 def delete_step(step_id):
     # Récupérer la recette avant de la supprimer
     response = get_step(step_id)
@@ -395,6 +396,43 @@ def add_step():
     conn.close()
 
     return step
+
+@app.route('/step/<int:step_id>', methods=['PUT'])
+def update_step(step_id):
+    # Vérifier si l'étape existe
+    response = get_step(step_id)
+
+    if response[1] == 404:
+        return jsonify({'error': 'Step not found'}), 404
+
+    existing_step = response[0].get_json()
+
+    print(existing_step, file=sys.stderr)
+    
+    # Récupération des données déjà existantes
+    step_number = existing_step["step_number"]
+    step_title = existing_step["title"]
+    step_description = existing_step["description"]
+
+    # Obtenir les données de l'étape à mettre à jour
+    params = request.get_json()
+    if params:
+        step_number = params.get("step_number", step_number)
+        step_title = params.get("title", step_title)
+        step_description = params.get("description", step_description)
+
+    # Mettre à jour l'étape dans la base de données
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("UPDATE steps SET step_number = ?, title = ?, description = ? WHERE id = ?", (step_number, step_title, step_description, step_id))
+    conn.commit()
+
+    # Récupérer l'étape mise à jour
+    updated_step = get_step(step_id)
+
+    conn.close()
+
+    return updated_step
 
 if __name__ == '__main__':
     app.run(debug=True)

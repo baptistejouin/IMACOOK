@@ -13,8 +13,8 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 | --------- | --------- | --------- | --------- | --------- |
 | OK | get all recipes | GET | `/recipes` | |
 | OK | get one recipe | GET | `/recipe/<id>` | |
-| OK | create one recipe | POST | `/recipe/add` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id`, `cooking_time_s`, `[ingredients{"id", "quantity"}]`, `[tools{"id"}]`, `[steps{"title", "description"}]` |
-| OK | delete one recipe | DELETE | `/recipe/delete/<id>` | | |
+| OK | create one recipe | POST | `/recipe` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id`, `cooking_time_s`, `[ingredients{"id", "quantity"}]`, `[tools{"id"}]`, `[steps{"title", "description"}]` |
+| OK | delete one recipe | DELETE | `/recipe/<id>` | | |
 #### Ingredients
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
@@ -40,9 +40,9 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
 | OK | get one step | GET | `/step/<id>` | |
-| | update the title and description of one step | POST | `/step`
-| OK | delete one step | DELETE | `/step/delete/<id>` | |
-| OK | create one step | POST | `/step/add` | `[{id_recipe, title, description, step_number}]` |
+| OK | update the title and description of one step | PUT | `/step/<id>`
+| OK | delete one step | DELETE | `/step/<id>` | |
+| OK | create one step | POST | `/step` | `[{id_recipe, title, description, step_number}]` |
 
 
 **⚠️ Note : Before starting, you need npm, nodejs, sqlite3, flask-cors, Python3, Pip, and Flask.**
