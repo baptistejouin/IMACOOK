@@ -123,7 +123,7 @@ def delete_recipe(recipe_id):
     else:
         return jsonify({'error': 'Recipe not found'}), 404
 
-@app.route('/recipes/add', methods=['POST'])
+@app.route('/recipe/add', methods=['POST'])
 def add_recipe():
     params = request.get_json()
 
