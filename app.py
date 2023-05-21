@@ -290,6 +290,47 @@ def get_difficulty(difficulty_id):
     # return the difficulty
     return jsonify(difficulty_data)
 
+# define route to get all tools from the database
+@app.route('/tools', methods=['GET'])
+def get_tools():
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM tools")
+    tools_rows = cursor.fetchall()
+
+    tools_list = []
+    for tool in tools_rows:
+        tool_data = {
+            'id': tool[0],
+            'name': tool[1]
+        }
+        tools_list.append(tool_data)
+
+    conn.close()
+
+    # return the list of tools
+    return jsonify(tools_list)
+
+# define route to get a specific tool from the database
+@app.route('/tool/<int:tool_id>', methods=['GET'])
+def get_tool(tool_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name FROM tools WHERE id = ? LIMIT 1", (tool_id,))
+    tool_row = cursor.fetchone()
+
+    if not tool_row:
+       return jsonify({'error': 'tool not found'}), 404
+
+    tool_data = {
+        'id': tool_row[0],
+        'name': tool_row[1]
+    }
+
+    conn.close()
+
+    # return the tool
+    return jsonify(tool_data)
 
 if __name__ == '__main__':
     app.run(debug=True)

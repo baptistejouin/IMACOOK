@@ -33,8 +33,8 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Tools
 | status | result | method | endpoint | params |
 | --------- | ---------| --------- | --------- | --------- |
-| | get all tools | GET | `/tools` | |
-| | get one tool | GET | `/tool/<id>` | |
+| OK | get all tools | GET | `/tools` | |
+| OK | get one tool | GET | `/tool/<id>` | |
 
 #### Steps
 | status | result | method | endpoint | params |
