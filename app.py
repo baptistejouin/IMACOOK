@@ -164,6 +164,27 @@ def add_recipe():
 
     return recipe
 
+# define route to get all ingredients from the database
+@app.route('/ingredients', methods=['GET'])
+def get_ingredients():
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM ingredients")
+    ingredients_rows = cursor.fetchall()
+
+    ingredients_list = []
+    for ingredient in ingredients_rows:
+        ingredient_data = {
+            'id': ingredient[0],
+            'name': ingredient[1]
+        }
+        ingredients_list.append(ingredient_data)
+
+    conn.close()
+
+    # return the list of cookers as a JSON response
+    return jsonify(ingredients_list)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
