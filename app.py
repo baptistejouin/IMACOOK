@@ -46,7 +46,7 @@ def get_recipes():
     # return the list of cookers as a JSON response
     return jsonify(recipes_list)
   
-# define route to get all recipes from the database
+# define route to get a specific recipe from the database
 @app.route('/recipe/<int:recipe_id>', methods=['GET'])
 def get_recipe(recipe_id):
     conn = sqlite3.connect('database/imacook.db')
@@ -107,7 +107,7 @@ def get_recipe(recipe_id):
         conn.close()
         return jsonify({'error': 'Recipe not found'}), 404
 
-
+# define route to delete a specific recipe
 @app.route('/recipe/delete/<int:recipe_id>', methods=['DELETE'])
 def delete_recipe(recipe_id):
     # Récupérer la recette avant de la supprimer
@@ -163,6 +163,48 @@ def add_recipe():
     conn.close()
 
     return recipe
+
+# define route to get all ingredients from the database
+@app.route('/ingredients', methods=['GET'])
+def get_ingredients():
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM ingredients")
+    ingredients_rows = cursor.fetchall()
+
+    ingredients_list = []
+    for ingredient in ingredients_rows:
+        ingredient_data = {
+            'id': ingredient[0],
+            'name': ingredient[1]
+        }
+        ingredients_list.append(ingredient_data)
+
+    conn.close()
+
+    # return the list of ingredients
+    return jsonify(ingredients_list)
+
+# define route to get a specific ingredient from the database
+@app.route('/ingredient/<int:ingredient_id>', methods=['GET'])
+def get_ingredient(ingredient_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name FROM ingredients WHERE id = ? LIMIT 1", (ingredient_id,))
+    ingredient_row = cursor.fetchone()
+
+    if not ingredient_row:
+       return jsonify({'error': 'Ingredient not found'}), 404
+
+    ingredient_data = {
+        'id': ingredient_row[0],
+        'name': ingredient_row[1]
+    }
+
+    conn.close()
+
+    # return the ingredient
+    return jsonify(ingredient_data)
 
 
 if __name__ == '__main__':
