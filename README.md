@@ -7,12 +7,14 @@ Projet mené dans le cadre du cours de programmation web (école d’ingénieurs
 ![IMACOOK DATABASE](https://cdn.discordapp.com/attachments/1092781041342763118/1109525732893397143/dbdiagram.io_d.png)
 
 ### Endpoints
+_NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Recipes
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
-| | get all recipes | GET | `/recipes` | |
+| OK | get all recipes | GET | `/recipes` | |
 | OK | get one recipe | GET | `/recipe/<id>` | |
-| | create one recipe | __POST__ | `/recipes/add` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id` |
+| OK | create one recipe | POST | `/recipes/add` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id`, `cooking_time_s`, `[ingredients{"id", "quantity"}]`, `[tools{"id"}]`, `[steps{"title", "description"}]` |
+| | delete one recipe | POST | `/recipe/delete/<id>` | | |
 #### Ingredients
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
@@ -37,7 +39,10 @@ Projet mené dans le cadre du cours de programmation web (école d’ingénieurs
 #### Steps
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
-| | add one or more step | __POST__ | `/steps/add` | `title`, `description`, `step_number`, `id_recipe` |
+| | update the title and description of one step | POST | `/step`
+| | delete one step | POST | `/step/delete/<id>` | |
+| | create one step | POST | `/step/add` | `[{id_recipe, title, description, step_number}]` |
+
 
 **⚠️ Note : Before starting, you need sqlite3, Python3, Pip, and Flask.**
 
