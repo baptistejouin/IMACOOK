@@ -206,6 +206,131 @@ def get_ingredient(ingredient_id):
     # return the ingredient
     return jsonify(ingredient_data)
 
+# define route to get all categorys from the database
+@app.route('/categories', methods=['GET'])
+def get_categories():
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM categories")
+    categories_rows = cursor.fetchall()
+
+    categories_list = []
+    for category in categories_rows:
+        category_data = {
+            'id': category[0],
+            'name': category[1]
+        }
+        categories_list.append(category_data)
+
+    conn.close()
+
+    # return the list of categories
+    return jsonify(categories_list)
+
+# define route to get a specific category from the database
+@app.route('/category/<int:category_id>', methods=['GET'])
+def get_category(category_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name FROM categories WHERE id = ? LIMIT 1", (category_id,))
+    category_row = cursor.fetchone()
+
+    if not category_row:
+       return jsonify({'error': 'category not found'}), 404
+
+    category_data = {
+        'id': category_row[0],
+        'name': category_row[1]
+    }
+
+    conn.close()
+
+    # return the category
+    return jsonify(category_data)
+
+# define route to get all difficulties from the database
+@app.route('/difficulties', methods=['GET'])
+def get_difficulties():
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM difficulty")
+    difficulties_rows = cursor.fetchall()
+
+    difficulties_list = []
+    for difficulty in difficulties_rows:
+        difficulty_data = {
+            'id': difficulty[0],
+            'name': difficulty[1]
+        }
+        difficulties_list.append(difficulty_data)
+
+    conn.close()
+
+    # return the list of difficulties
+    return jsonify(difficulties_list)
+
+# define route to get a specific difficulty from the database
+@app.route('/difficulty/<int:difficulty_id>', methods=['GET'])
+def get_difficulty(difficulty_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, label FROM difficulty WHERE id = ? LIMIT 1", (difficulty_id,))
+    difficulty_row = cursor.fetchone()
+
+    if not difficulty_row:
+       return jsonify({'error': 'difficulty not found'}), 404
+
+    difficulty_data = {
+        'id': difficulty_row[0],
+        'name': difficulty_row[1]
+    }
+
+    conn.close()
+
+    # return the difficulty
+    return jsonify(difficulty_data)
+
+# define route to get all tools from the database
+@app.route('/tools', methods=['GET'])
+def get_tools():
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM tools")
+    tools_rows = cursor.fetchall()
+
+    tools_list = []
+    for tool in tools_rows:
+        tool_data = {
+            'id': tool[0],
+            'name': tool[1]
+        }
+        tools_list.append(tool_data)
+
+    conn.close()
+
+    # return the list of tools
+    return jsonify(tools_list)
+
+# define route to get a specific tool from the database
+@app.route('/tool/<int:tool_id>', methods=['GET'])
+def get_tool(tool_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name FROM tools WHERE id = ? LIMIT 1", (tool_id,))
+    tool_row = cursor.fetchone()
+
+    if not tool_row:
+       return jsonify({'error': 'tool not found'}), 404
+
+    tool_data = {
+        'id': tool_row[0],
+        'name': tool_row[1]
+    }
+
+    conn.close()
+
+    # return the tool
+    return jsonify(tool_data)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -23,18 +23,18 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Categories
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
-| | get all categories | GET | `/categories` | |
-| | get one category | GET | `/category/<id>` | |
+| OK | get all categories | GET | `/categories` | |
+| OK | get one category | GET | `/category/<id>` | |
 #### Difficulty
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
-| | get all difficulties | GET | `/difficulties` | |
-| | get one difficulty | GET | `/difficulty/<id>` | |
+| OK | get all difficulties | GET | `/difficulties` | |
+| OK | get one difficulty | GET | `/difficulty/<id>` | |
 #### Tools
 | status | result | method | endpoint | params |
 | --------- | ---------| --------- | --------- | --------- |
-| | get all tools | GET | `/tools` | |
-| | get one tool | GET | `/tool/<id>` | |
+| OK | get all tools | GET | `/tools` | |
+| OK | get one tool | GET | `/tool/<id>` | |
 
 #### Steps
 | status | result | method | endpoint | params |
