@@ -42,7 +42,7 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 | OK | get one step | GET | `/step/<id>` | |
 | | update the title and description of one step | POST | `/step`
 | OK | delete one step | DELETE | `/step/delete/<id>` | |
-| | create one step | POST | `/step/add` | `[{id_recipe, title, description, step_number}]` |
+| OK | create one step | POST | `/step/add` | `[{id_recipe, title, description, step_number}]` |
 
 
 **⚠️ Note : Before starting, you need npm, nodejs, sqlite3, flask-cors, Python3, Pip, and Flask.**
