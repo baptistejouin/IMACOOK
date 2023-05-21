@@ -11,9 +11,9 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Recipes
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
-| | get all recipes | GET | `/recipes` | |
+| OK | get all recipes | GET | `/recipes` | |
 | OK | get one recipe | GET | `/recipe/<id>` | |
-| | create one recipe | POST | `/recipes/add` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id`, `cooking_time_s`, `[ingredients{"id", "quantity"}]`, `[tools{"id"}]`, `[steps{"title", "description"}]` |
+| OK | create one recipe | POST | `/recipes/add` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id`, `cooking_time_s`, `[ingredients{"id", "quantity"}]`, `[tools{"id"}]`, `[steps{"title", "description"}]` |
 | | delete one recipe | POST | `/recipe/delete/<id>` | | |
 #### Ingredients
 | status | result | method | endpoint | params |
