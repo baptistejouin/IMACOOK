@@ -140,7 +140,7 @@ def add_recipe():
 
     conn.close()
 
-    return jsonify(recipe)
+    return recipe
 
 
 if __name__ == '__main__':
