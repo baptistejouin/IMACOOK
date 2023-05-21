@@ -421,7 +421,7 @@ def add_step():
     return step
 
 # update one step
-@app.route('/step/<int:step_id>', methods=['PUT'])
+@app.route('/step/<int:step_id>', methods=['PATCH'])
 def update_step(step_id):
     # Vérifier si l'étape existe
     response = get_step(step_id)
