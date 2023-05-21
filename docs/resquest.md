@@ -3,7 +3,7 @@
 ## Add a recipe (POST)
 ```bash
 curl --request POST \
-  --url 'http://127.0.0.1:5000/recipe/add' \
+  --url 'http://127.0.0.1:5000/recipe' \
   --header 'Content-Type: application/json' \
   --data '{
         "name": "Poulet au curry",
@@ -48,7 +48,7 @@ curl --request POST \
 ## Add a step (POST)
 ```bash
 curl --request POST \
-  --url 'http://127.0.0.1:5000/step/add' \
+  --url 'http://127.0.0.1:5000/step' \
   --header 'Content-Type: application/json' \
   --data '{
 		"id_recipe": 5,
@@ -56,4 +56,11 @@ curl --request POST \
         "step_title": "Etape 1 (pas facile celle-là)",
         "step_description": "Faire suer les oignons"
     }'
+```
+
+## Update a step (PUT)
+```bash
+--url 'http://127.0.0.1:5000/step/3' \
+  --header 'Content-Type: application/json' \
+  --data '
 ```
