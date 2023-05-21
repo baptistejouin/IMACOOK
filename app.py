@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import sqlite3
-import sys
 
 app = Flask(__name__)
 CORS(app)
@@ -406,8 +405,6 @@ def update_step(step_id):
         return jsonify({'error': 'Step not found'}), 404
 
     existing_step = response[0].get_json()
-
-    print(existing_step, file=sys.stderr)
     
     # Récupération des données déjà existantes
     step_number = existing_step["step_number"]
