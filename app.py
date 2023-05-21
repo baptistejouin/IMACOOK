@@ -92,7 +92,7 @@ def get_recipe(recipe_id):
             ingredient_list.append(ingredient_data)
         
         # get steps
-        cursor.execute("SELECT * FROM steps WHERE id_recipe = ?", (recipe_id,))
+        cursor.execute("SELECT * FROM steps WHERE id_recipe = ? ORDER BY step_number", (recipe_id,))
         steps = cursor.fetchall()
         # steps conversion from table to object
         step_list = []
