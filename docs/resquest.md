@@ -59,8 +59,14 @@ curl --request POST \
 ```
 
 ## Update a step (PUT)
+Only the elements that need to be changed can be written in the data to be sent.
 ```bash
---url 'http://127.0.0.1:5000/step/3' \
+curl --request PUT \
+  --url 'http://127.0.0.1:5000/step/3' \
   --header 'Content-Type: application/json' \
-  --data '
+  --data '{
+        "step_number": 2,
+        "title": "Etape 2",
+        "description": "Description mise à jour"
+    }'
 ```
