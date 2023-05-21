@@ -103,5 +103,24 @@ def get_recipe(recipe_id):
     # return the list of cookers as a JSON response
     return jsonify(recipe)
 
+@app.route('/recipe/delete/<int:recipe_id>', methods=['DELETE'])
+def delete_recipe(recipe_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+
+    # Récupérer la recette avant de la supprimer
+    cursor.execute("SELECT * FROM recipes WHERE id = ? LIMIT 1", (recipe_id,))
+    recipe = cursor.fetchone()
+
+    if recipe:
+        # Supprimer la recette de la table "recipes"
+        cursor.execute("DELETE FROM recipes WHERE id = ?", (recipe_id,))
+        conn.commit()
+        conn.close()
+        return jsonify(recipe), 200
+    else:
+        conn.close()
+        return "Recipe not found", 404
+
 if __name__ == '__main__':
     app.run(debug=True)
