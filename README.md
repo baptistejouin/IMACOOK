@@ -44,7 +44,7 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 | | create one step | POST | `/step/add` | `[{id_recipe, title, description, step_number}]` |
 
 
-**⚠️ Note : Before starting, you need npm, nodejs, sqlite3, Python3, Pip, and Flask.**
+**⚠️ Note : Before starting, you need npm, nodejs, sqlite3, flask-cors, Python3, Pip, and Flask.**
 
 ### Init DB (first install only)
 ```bash

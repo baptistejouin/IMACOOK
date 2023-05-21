@@ -1,0 +1,80 @@
+@font-face {
+  font-family: "bold";
+  src: url("/fonts/Poppins-Bold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "medium";
+  src: url("/fonts/Poppins-Medium.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "regular";
+  src: url("/fonts/Poppins-Regular.ttf")  format("ttf");
+}
+:root {
+  --first-hue: 34;
+  --first-color: hsl(var(--first-hue), 75%, 28%);
+  --first-color-alt: hsl(var(--first-hue), 75%, 32%);
+
+  --second-hue: 32;
+  --second-color: hsl(var(--second-hue), 100%, 97%);
+
+  --third-hue: 35;
+  --third-color: hsl(var(--third-hue), 100%, 95%);
+
+  --fourth-hue: 37;
+  --fourth-color: hsl(var(--fourth-hue), 100%, 85%);
+
+  --fifth-hue: 0;
+  --black-color: hsl(var(--fifth-hue), 0%, 0%);
+
+  --sixt-hue: 0;
+  --white-color: hsl(var(--sixt-hue), 0%, 100%);
+  
+  --regular-font: 'regular', sans-serif;
+  --medium-font: 'medium', sans-serif;
+  --bold-font: 'bold', sans-serif;
+  --big-font-size: 2.75rem;
+  --medium-font-size: 2rem;
+  --normal-font-size: 1.10rem;
+  --small-font-size: .9rem;
+  --medium-line-height: 1.6rem;
+  --normal-line-height: 1.4rem;
+  --small-line-height: 1.2rem;
+
+  --icon_max_height:65px;
+  --icon_min_height:35px;
+  --button-radius:15px;
+  --button-mid:18px;
+  
+  --padding:40px;
+  --max-width:1114px;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  background-color:var(--second-color);
+  overscroll-behavior: none;
+  display: flex;
+  justify-content: center;
+  transition: .8s; 
+}
+main{
+  position:relative;
+  display: flex;
+  justify-content: flex-start;
+  align-content:flex-start;
+  flex-wrap: wrap;
+  width:100%;
+  height:100vh;
+  padding: 25px;
+  max-width: var(--max-width);
+}
+body{
+  background-color: #FFF5E7;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: auto;
+}
