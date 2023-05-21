@@ -42,3 +42,14 @@ INSERT INTO `recipe_tool` (`id_recipe`, `id_tool`) VALUES (2, 3);
 
 INSERT INTO `recipe_tool` (`id_recipe`, `id_tool`) VALUES (3, 1);
 INSERT INTO `recipe_tool` (`id_recipe`, `id_tool`) VALUES (3, 3);
+
+INSERT INTO `steps` (`id_recipe`, `step_number`, `title`, `description`) VALUES (1, 1, 'Etape 1', 'Mélanger les ingrédients');
+INSERT INTO `steps` (`id_recipe`, `step_number`, `title`, `description`) VALUES (1, 3, 'Etape 3', 'Manger');
+INSERT INTO `steps` (`id_recipe`, `step_number`, `title`, `description`) VALUES (1, 2, 'Etape 2', 'Mettre au four');
+
+INSERT INTO `steps` (`id_recipe`, `step_number`, `title`, `description`) VALUES (2, 1, 'Etape 1', 'Couper la courgette');
+INSERT INTO `steps` (`id_recipe`, `step_number`, `title`, `description`) VALUES (2, 2, 'Etape 2', 'Manger');
+
+INSERT INTO `steps` (`id_recipe`, `step_number`, `title`, `description`) VALUES (3, 1, 'La base', "Mettre le riz dans l\'eau");
+INSERT INTO `steps` (`id_recipe`, `step_number`, `title`, `description`) VALUES (3, 2, 'Ensuite...', 'Attendre environ 15 minutes, vous pouvez écouter de la musique en attendant');
+INSERT INTO `steps` (`id_recipe`, `step_number`, `title`, `description`) VALUES (3, 3, 'Pour finir', "Il ne reste plus qu'a servir et à manger !");
