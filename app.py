@@ -204,7 +204,7 @@ def get_ingredient(ingredient_id):
     conn.close()
 
     # return the ingredient
-    return jsonify(ingredient_data)
+    return jsonify(ingredient_data), 200
 
 # define route to get all categorys from the database
 @app.route('/categories', methods=['GET'])
@@ -246,7 +246,7 @@ def get_category(category_id):
     conn.close()
 
     # return the category
-    return jsonify(category_data)
+    return jsonify(category_data), 200
 
 # define route to get all difficulties from the database
 @app.route('/difficulties', methods=['GET'])
@@ -260,7 +260,7 @@ def get_difficulties():
     for difficulty in difficulties_rows:
         difficulty_data = {
             'id': difficulty[0],
-            'name': difficulty[1]
+            'label': difficulty[1]
         }
         difficulties_list.append(difficulty_data)
 
@@ -282,10 +282,10 @@ def get_difficulty(difficulty_id):
 
     difficulty_data = {
         'id': difficulty_row[0],
-        'name': difficulty_row[1]
+        'label': difficulty_row[1]
     }
 
-    conn.close()
+    conn.close(), 200
 
     # return the difficulty
     return jsonify(difficulty_data)
@@ -330,7 +330,49 @@ def get_tool(tool_id):
     conn.close()
 
     # return the tool
-    return jsonify(tool_data)
+    return jsonify(tool_data), 200
+
+# define route to get a specific step from the database
+@app.route('/step/<int:step_id>', methods=['GET'])
+def get_step(step_id):
+    conn = sqlite3.connect('database/imacook.db')
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM steps WHERE id = ? LIMIT 1", (step_id,))
+    step_row = cursor.fetchone()
+
+    if not step_row:
+       return jsonify({'error': 'step not found'}), 404
+
+    step_data = {
+        'id': step_row[0],
+        'id_recipe': step_row[1],
+        'step_number': step_row[2],
+        'title': step_row[3],
+        'description': step_row[4]
+    }
+
+    conn.close()
+
+    # return the step
+    return jsonify(step_data), 200
+
+# define route to delete a specific step
+@app.route('/step/delete/<int:step_id>', methods=['DELETE'])
+def delete_step(step_id):
+    # Récupérer la recette avant de la supprimer
+    response = get_step(step_id)
+    step = response[0]
+
+    if response[1] != 404:
+        conn = sqlite3.connect('database/imacook.db')
+        cursor = conn.cursor()
+        # Supprimer l'étape
+        cursor.execute("DELETE FROM steps WHERE id = ?", (step_id,))
+        conn.commit()
+        conn.close()
+        return step, 200
+    else:
+        return jsonify({'error': 'step not found'}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

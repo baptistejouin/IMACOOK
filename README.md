@@ -14,7 +14,7 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 | OK | get all recipes | GET | `/recipes` | |
 | OK | get one recipe | GET | `/recipe/<id>` | |
 | OK | create one recipe | POST | `/recipe/add` | `name`, `cooker`, `picture`, `category_id`, `difficulty_id`, `cooking_time_s`, `[ingredients{"id", "quantity"}]`, `[tools{"id"}]`, `[steps{"title", "description"}]` |
-| OK | delete one recipe | POST | `/recipe/delete/<id>` | | |
+| OK | delete one recipe | DELETE | `/recipe/delete/<id>` | | |
 #### Ingredients
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
@@ -39,8 +39,9 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 #### Steps
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
+| OK | get one step | GET | `/step/<id>` | |
 | | update the title and description of one step | POST | `/step`
-| | delete one step | POST | `/step/delete/<id>` | |
+| OK | delete one step | DELETE | `/step/delete/<id>` | |
 | | create one step | POST | `/step/add` | `[{id_recipe, title, description, step_number}]` |
 
 
