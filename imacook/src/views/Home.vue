@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>Imacook</title>
-</head>
-<body>
-    <div class="entete">
+<template>
+	<div class="entete">
         <h1>IMACOOK</h1>
         <a href="index.html" class="accueil">Accueil</a>
         <div class="search">
@@ -68,5 +59,90 @@
             </a>
         </div>
     </div>
-</body>
-</html>
+</template>
+
+<style scope>
+.entete{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 20px;
+    margin-left: 20px;
+    align-items: center;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+.entete h1,
+.entete a{
+    font-size: 25px;
+    color: #D18000;
+    text-align: center;
+    font-weight: normal;
+}
+
+.h1{
+    margin: none;
+}
+
+.recipe{
+    background-color: white;
+    width: 20vw;
+    border-radius: 10%;
+    text-align: center;
+    color: #7F4E00;
+    width: fit-content;
+}
+
+.recipeimg{
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px;
+    height: 15vw;
+    width: 15vw;
+}
+
+.recipeimg img{
+    height: 100%;
+}
+
+.temps, .categorie{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.temps img, .categorie img{
+    margin-right: 10px;
+    margin-bottom: 5px;
+    width: 30px;
+}
+
+#recipe_name{
+    font-weight: bold;
+}
+
+.titre{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+}
+
+.listrecipes{
+    display: flex;
+    justify-content: space-around;
+}
+</style>
+
+<script>
+export default {
+	name: 'Home'
+};
+</script>

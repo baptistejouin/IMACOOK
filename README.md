@@ -44,7 +44,7 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 | | create one step | POST | `/step/add` | `[{id_recipe, title, description, step_number}]` |
 
 
-**⚠️ Note : Before starting, you need sqlite3, Python3, Pip, and Flask.**
+**⚠️ Note : Before starting, you need npm, nodejs, sqlite3, flask-cors, Python3, Pip, and Flask.**
 
 ### Init DB (first install only)
 ```bash
@@ -63,12 +63,23 @@ SELECT * FROM recipes;
 # exit
 .exit
 ```
+### Init the front
+```bash
+cd imacook
+
+npm install
+```
 
 ### Launch App
 ```bash
+# be sure you are in the root path (IMACOOK)
+
 # launch the db with sqlite
 sqlite3 database/imacook.db
 
 # launch python/flask
 flask --app app --debug run
+
+# lauch the front
+cd imacook && npm dev
 ```
