@@ -12,13 +12,10 @@
       </div>
       <div>
         <label for="cat-select">Catégorie :</label>
-        <select name="categories" id="cat-select">
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-          <option value="hamster">Hamster</option>
-          <option value="parrot">Parrot</option>
-          <option value="spider">Spider</option>
-          <option value="goldfish">Goldfish</option>
+        <select id="categories" v-model="isSelected">
+          <template v-for="category in categoriesData" >
+            <option :value="category.id">{{ category.name}}</option>
+          </template>
         </select>
       </div>
       <div>
@@ -26,11 +23,11 @@
         <input type="text" id="cooker" name="cooker_name" />
       </div>
       <div>
-        <label for="dificulty-select">Difficulté :</label>
-        <select name="dificulties" id="dificulty-select">
-          <option value="Facile">Facile</option>
-          <option value="Moyen">Moyen</option>
-          <option value="Difficile">Difficile</option>
+        <label for="difficulty-select">Difficulté :</label>
+        <select id="difficulties" v-model="isSelected">
+          <template v-for="difficulty in difficultiesData" >
+            <option :value="difficulty.id">{{ difficulty.label}}</option>
+          </template>
         </select>
       </div>
       <div>
@@ -61,7 +58,39 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import Navbar from "@/components/Navbar.vue";
+import axios from "axios";
+
+const categoriesData = ref([]);
+const difficultiesData = ref([]);
+
+function getCategories() {
+  axios
+  .get(`http://127.0.0.1:5000/categories`)
+    .then((response) => {
+      categoriesData.value = response.data;
+      console.log(categoriesData.value);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  function getDifficulties() {
+  axios
+  .get(`http://127.0.0.1:5000/difficulties`)
+    .then((response) => {
+      difficultiesData.value = response.data;
+      console.log(difficultiesData.value);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  getCategories();
+  getDifficulties();
 </script>
 
 <style scoped></style>
