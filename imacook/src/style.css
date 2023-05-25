@@ -78,3 +78,203 @@ body{
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   margin: auto;
 }
+
+a{
+  text-decoration: none;
+}
+
+
+
+/************************** SEARCH *********************************/
+
+
+.search_section{
+  margin-top:25px;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background: var(--third-color);
+  padding:var(--padding);
+  border-radius:40px;
+}
+.search-input{
+  background: var(--second-color);
+  outline: none;
+  border: none;
+  width: 100%;
+  color: var(--first-color);
+  border-radius:15px;
+  padding:20px;
+  font-family:var(--regular-font);
+  font-size:var(--normal-font-size);
+  font-weight: 600;
+}
+.search-input::placeholder{
+  color: var(--first-color);
+}
+.listrecipes{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap:wrap;
+  width:100%;
+  margin-top:50px;
+}
+.recipe{
+  width:100%;
+  height:150px;
+  display: flex;
+  justify-content: space-between;
+  padding:20px;
+  border-radius:25px;
+  background: var(--third-color);
+  font-family:var(--regular-font);
+  font-size:var(--normal-font-size);
+  color: var(--first-color);
+  fill: var(--first-color);
+  cursor:pointer;
+  box-shadow: rgba(149, 157, 165, 0.25) 0px 5px 36px;
+  transition: .4s;
+  margin-bottom:30px;
+}
+.recipe:hover{
+  box-shadow: rgba(149, 157, 165, 0.15) 0px 5px 18px;
+  transform: scale(0.99);
+  transition: .4s;
+}
+.search-info{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width:20%;
+}
+.search-info svg{
+  width:var(--icon_min_height);
+  height:var(--icon_min_height);
+  margin-right:12px;
+}
+.search-img{
+  border-radius: 40px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+
+
+/**************************** ACCUEIL ****************************************/
+
+
+.listrecipes_accueil{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap:wrap;
+    width:100%;
+    margin-top:50px;
+}
+.recipe_accueil{
+    width:250px;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    padding:20px;
+    border-radius:25px;
+    background: var(--third-color);
+    font-family:var(--regular-font);
+    font-size:var(--normal-font-size);
+    color: var(--first-color);
+    fill: var(--first-color);
+    cursor:pointer;
+    box-shadow: rgba(149, 157, 165, 0.25) 0px 5px 36px;
+    transition: .4s;
+    margin: 0px 30px 30px 0px;
+  }
+  .recipe_accueil:hover{
+    box-shadow: rgba(149, 157, 165, 0.15) 0px 5px 18px;
+    transform: scale(0.99);
+    transition: .4s;
+  }
+  .accueil-info{
+    margin-bottom:12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+  }
+  .accueil-info p{
+    color:var(--first-color);
+  }
+  .accueil-info svg{
+    width:1.5rem;
+    height:1.5rem;
+    margin-right:8px;
+  }
+  .accueil-img{
+    margin-bottom:20px;
+    width: 100%;
+    border-radius: 25px;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  #recipe_name{
+    background: var(--third-color);
+    font-family:var(--regular-font);
+    font-size:var(--normal-font-size);
+    text-align:center;
+    font-weight: 600;
+  }
+  .accueil_nav{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+  }
+  .accueil_title{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  }
+  .accueil_title h2{
+    font-family:var(--regular-font);
+    font-size:var(--medium-font-size);
+    color: var(--first-color);
+  }
+  .accueil_title svg{
+    fill:var(--first-color);
+    width: var(--icon_min_height);
+    height: var(--icon_min_height);
+    margin-right:10px;
+  }
+  .radio input {
+	width: auto;
+	height: 100%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 50px;
+	padding: 8px 20px;
+    border:solid 2px var(--first-color);
+	color: var(--first-color);
+    font-family:var(--regular-font);
+    font-size:var(--normal-font-size);
+	transition: all .3s linear;
+    margin-left:8px;
+  }
+  .radio input:checked {
+	background-color: var(--first-color);
+    color: var(--white-color);
+  }
+  .radio input:before {
+	content: attr(label);
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+  }
