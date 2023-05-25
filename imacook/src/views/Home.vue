@@ -14,26 +14,29 @@
         </select>
     </div>
     </div>
-    <div class="listrecipes">
-      <template v-for="recipe in recipesData">
-        <div v-show="(isSelected == recipe.category.id) || (isSelected == -1)" class="recipe">
+    <div recipecontainer>
 
-          <a :href="`/recipe/${recipe.id}`">
-            <div class="recipeimg">
-              <img :src="`${recipe.picture}`" :alt="`${recipe.name}`" />
-            </div>
-            <p id="recipe_name">{{ recipe.name }}</p>
-            <div class="temps">
-              <img src="image/🦆 icon _alarm_.png" alt="temps de préparation" />
-              <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }} min</p>
-            </div>
-            <div class="categorie">
-              <img src="image/categorie.png" alt="catégorie" />
-              <p id="recipe_cat">{{ recipe.category.name }}</p>
-            </div>
-          </a>
-        </div>
-        </template>
+      <div class="listrecipes">
+        <template v-for="recipe in recipesData">
+          <div v-show="(isSelected == recipe.category.id) || (isSelected == -1)" class="recipe">
+  
+            <router-link :to="`/recipe/${recipe.id}`">
+              <div class="recipeimg">
+                <img :src="`${recipe.picture}`" :alt="`${recipe.name}`" />
+              </div>
+              <p id="recipe_name">{{ recipe.name }}</p>
+              <div class="temps">
+                <img src="image/🦆 icon _alarm_.png" alt="temps de préparation" />
+                <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }} min</p>
+              </div>
+              <div class="categorie">
+                <img src="image/categorie.png" alt="catégorie" />
+                <p id="recipe_cat">{{ recipe.category.name }}</p>
+              </div>
+            </router-link>
+          </div>
+          </template>
+      </div>
     </div>
   </main>
 </template>
@@ -57,9 +60,9 @@ a {
   background-color: white;
   display: flex;
   justify-content: center;
-  width: calc((100% / 3) - 4vw);
   border-radius: 10%;
   text-align: center;
+  min-width: 200px;
   color: #7f4e00;
 }
 
@@ -100,11 +103,19 @@ a {
   margin: 30px;
 }
 
+.recipecontainer {
+  display: flex;
+  width: 100%;
+  margin-inline: auto;
+  margin-bottom: 50px;
+}
+
 .listrecipes {
   width: 100%;
+  justify-content: flex-start;
   display: flex;
-  justify-content: space-around;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 </style>
 

@@ -75,9 +75,6 @@ npm install
 ```bash
 # be sure you are in the root path (IMACOOK)
 
-# launch the db with sqlite
-sqlite3 database/imacook.db
-
 # launch python/flask
 flask --app app --debug run
 
