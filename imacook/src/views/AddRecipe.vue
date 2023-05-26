@@ -85,6 +85,11 @@
         <input type="submit" value="Valider" />
       </div>
     </form>
+
+    <div v-if="successMessage" class="success-message">
+      <p>{{successMessage}}</p>
+    </div>
+
   </main>
 </template>
 
@@ -97,6 +102,7 @@ const categoriesData = ref([]);
 const difficultiesData = ref([]);
 const ingredientsData = ref([]);
 const toolsData = ref([]);
+const successMessage = ref('');
 
 const selectedIngredients = ref([]);
 const selectedTools = ref([]);
@@ -174,19 +180,40 @@ function addStep() {
 watchEffect(ingredientQuantities);
 
 function submitForm() {
-  form.ingredients = {};
-  selectedIngredients.value.forEach((ingredientId) => {
-    form.ingredients[ingredientId] = ingredientQuantities[ingredientId];
+  const ingredients = selectedIngredients.value.map((ingredientId) => {
+    return {
+      id: ingredientId,
+      quantity: ingredientQuantities[ingredientId],
+    };
   });
+  form.ingredients = ingredients;
   form.tools = [...selectedTools.value];
-  form.steps = { ...form.steps };
+  const steps = Object.keys(form.steps).map((stepNumber) => {
+    const step = form.steps[stepNumber];
+    return {
+      step_number: parseInt(stepNumber),
+      title: step.title,
+      description: step.description,
+    };
+  });
+
+  form.steps = steps;
   console.log(form);
 
   axios
     .post("http://127.0.0.1:5000/recipe", form)
     .then((response) => {
       console.log(response.data);
-      console.log("bien joué !");
+      successMessage.value = 'La recette a été ajoutée avec succès !';
+      form.recipe_name = '';
+      form.cooker_name = '';
+      form.picture = '';
+      form.category_id = '';
+      form.difficulty_id = '';
+      form.cooking_time_s = '';
+      form.ingredients = {};
+      form.tools = [];
+      form.steps = {1: { title: "", description: "" },};
     })
     .catch((error) => {
       console.error(error);
