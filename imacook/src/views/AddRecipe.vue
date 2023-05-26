@@ -8,7 +8,7 @@
     <form @submit.prevent="submitForm">
       <div>
         <label for="name">Nom de la recette :</label>
-        <input type="text" id="name" v-model="form.recipe_name" />
+        <input type="text" id="name" v-model="form.name" />
       </div>
       <div>
         <label for="categories">Catégorie :</label>
@@ -20,7 +20,7 @@
       </div>
       <div>
         <label for="cooker">Nom du cuisinier :</label>
-        <input type="text" id="cooker" v-model="form.cooker_name" />
+        <input type="text" id="cooker" v-model="form.cooker" />
       </div>
       <div>
         <label for="difficulty-select">Difficulté :</label>
@@ -32,11 +32,11 @@
       </div>
       <div>
         <label for="photo">Photo de la recette :</label>
-        <input type="url" id="photo" v-model="form.photo"/>
+        <input type="url" id="photo" v-model="form.picture"/>
       </div>
       <div>
         <label for="timing">Durée de la recette :</label>
-        <input type="time" id="timing" v-model="form.timing" min="00:00" max="50:00" required />
+        <input type="time" id="timing" v-model="form.cooking_time_s" min="00:00" max="50:00" required />
       </div>
 
       <div>
@@ -103,12 +103,12 @@ const selectedTools = ref([]);
 const ingredientQuantities = reactive({});
 
 const form = reactive({
-  recipe_name: "",
-  cooker_name: "",
-  photo: "",
+  name: "",
+  cooker: "",
+  picture: "",
   category_id: "",
   difficulty_id: "",
-  timing: "",
+  cooking_time_s: "",
   ingredients: {},
   tools: [],
   steps: {
@@ -168,7 +168,6 @@ function getTools() {
 function addStep() {
   const newStepIndex = Object.keys(form.steps).length + 1;
   form.steps[newStepIndex] = reactive({ title: "", description: "" });
-  console.log(form.steps);
 }
 
 // Surveiller les changements dans ingredientQuantities et mettre à jour la liste des ingrédients sélectionnés
@@ -181,11 +180,13 @@ function submitForm() {
   });
   form.tools = [...selectedTools.value];
   form.steps = { ...form.steps };
+  console.log(form);
 
   axios
     .post("http://127.0.0.1:5000/recipe", form)
     .then((response) => {
       console.log(response.data);
+      console.log("bien joué !");
     })
     .catch((error) => {
       console.error(error);
