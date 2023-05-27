@@ -1,95 +1,136 @@
 <template>
   <main>
+    <Navbar class="dark" />
 
-    <Navbar class="dark"/>
-    <div class="titre">
-      <h2>Ajout d'une recette</h2>
-    </div>
-    <form @submit.prevent="submitForm">
-      <div>
-        <label for="name">Nom de la recette :</label>
-        <input type="text" id="name" v-model="form.name" />
-      </div>
-      <div>
-        <label for="categories">Catégorie :</label>
-        <select id="categories" v-model="form.category_id">
-            <option v-for="category in categoriesData" :value="category.id" :key="category.id">
-            {{ category.name }}
-          </option>
-        </select>
-      </div>
-      <div>
-        <label for="cooker">Nom du cuisinier :</label>
-        <input type="text" id="cooker" v-model="form.cooker" />
-      </div>
-      <div>
-        <label for="difficulty-select">Difficulté :</label>
-        <select id="difficulties" v-model="form.difficulty_id">
-          <option v-for="difficulty in difficultiesData" :value="difficulty.id" :key="difficulty.id">
-            {{ difficulty.label }}
-          </option>
-        </select>
-      </div>
-      <div>
-        <label for="photo">Photo de la recette :</label>
-        <input type="url" id="photo" v-model="form.picture"/>
-      </div>
-      <div>
-        <label for="timing">Durée de la recette :</label>
-        <input type="time" id="timing" v-model="form.cooking_time_s" min="00:00" max="50:00" required />
+    <section>
+      <div class="titre">
+        <h2>Ajout d'une recette</h2>
       </div>
 
-      <div>
-        <label for="ingredients">Ajout des ingrédients :</label>
-        <div v-for="ingredient in ingredientsData" :key="ingredient.id">
-          <input type="checkbox" :id="`ingredient-${ingredient.id}`" :value="ingredient.id" v-model="selectedIngredients"/>
-          <p>{{ ingredient.name }}</p>
+      <div v-if="successMessage" class="success-message">
+        <p>{{ successMessage }}</p>
+      </div>
+
+      <form v-else @submit.prevent="submitForm">
+        <div class="form-step">
+          <label for="name">Nom de la recette :</label>
+          <input type="text" id="name" v-model="form.name" />
         </div>
-      </div>
-
-      <div>
-        <label for="selectedIngredients">Quantité des ingrédients :</label>
-        <ul>
-          <li v-for="ingredientId in selectedIngredients" :key="ingredientId">
-            <p>{{ getIngredientName(ingredientId) }} - Quantité :</p>
-            <input type="text" v-model="ingredientQuantities[ingredientId]" :placeholder="`Quantité pour ${getIngredientName(ingredientId)}`"/>
-          </li>
-        </ul>
-      </div>
-
-      <div>
-        <label for="tools">Ajout des ustensiles :</label>
-        <div v-for="tool in toolsData" :key="tool.id">
-          <input type="checkbox" :id="`tool-${tool.id}`" :value="tool.id" v-model="form.tools" />
-          <p>{{ tool.name }}</p>
+        <div class="form-step">
+          <label for="categories">Catégorie :</label>
+          <select id="categories" v-model="form.category_id">
+            <option
+              v-for="category in categoriesData"
+              :value="category.id"
+              :key="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select>
         </div>
-      </div>
+        <div class="form-step">
+          <label for="cooker">Nom du cuisinier :</label>
+          <input type="text" id="cooker" v-model="form.cooker" />
+        </div>
+        <div class="form-step">
+          <label for="difficulty-select">Difficulté :</label>
+          <select id="difficulties" v-model="form.difficulty_id">
+            <option
+              v-for="difficulty in difficultiesData"
+              :value="difficulty.id"
+              :key="difficulty.id"
+            >
+              {{ difficulty.label }}
+            </option>
+          </select>
+        </div>
+        <div class="form-step">
+          <label for="photo">Photo de la recette :</label>
+          <input type="url" id="photo" v-model="form.picture" />
+        </div>
+        <div>
+          <label for="timing">Durée de la recette (en seconde):</label>
+          <input
+            type="number"
+            id="timing"
+            v-model="form.cooking_time_s"
+            min="0"
+            required
+          />
+        </div>
 
-      <div>
-        <label for="steps">Étapes :</label>
-        <div v-for="(step, index) in Object.keys(form.steps)" :key="index">
-          <div>
-            <label>Titre de l'étape :</label>
-            <input type="text" v-model="form.steps[step].title" />
-          </div>
-          <div>
-            <label>Description de l'étape :</label>
-            <input type="text" v-model="form.steps[step].description" />
+        <div class="form-step">
+          <label for="ingredients">Ajout des ingrédients :</label>
+          <div
+            v-for="ingredient in ingredientsData"
+            :key="ingredient.id"
+            class="input-inline"
+          >
+            <input
+              type="checkbox"
+              :id="`ingredient-${ingredient.id}`"
+              :value="ingredient.id"
+              v-model="selectedIngredients"
+            />
+            <p>{{ ingredient.name }}</p>
           </div>
         </div>
 
-        <button @click.prevent="addStep">Ajouter une étape</button>
-      </div>
+        <div class="form-step">
+          <label for="selectedIngredients">Quantité des ingrédients :</label>
+          <div
+            v-for="ingredientId in selectedIngredients"
+            :key="ingredientId"
+            class="input-inline"
+          >
+            <p>{{ getIngredient(ingredientId).name }}</p>
+            <input
+              type="text"
+              size="5"
+              v-model="ingredientQuantities[ingredientId]"
+            />
+            <p>{{ getIngredient(ingredientId).unit }}</p>
+          </div>
+        </div>
 
-      <div>
-        <input type="submit" value="Valider" />
-      </div>
-    </form>
+        <div class="form-step">
+          <label for="tools">Ajout des ustensiles :</label>
+          <div v-for="tool in toolsData" :key="tool.id" class="input-inline">
+            <input
+              type="checkbox"
+              :id="`tool-${tool.id}`"
+              :value="tool.id"
+              v-model="selectedTools"
+            />
+            <p>{{ tool.name }}</p>
+          </div>
+        </div>
 
-    <div v-if="successMessage" class="success-message">
-      <p>{{successMessage}}</p>
-    </div>
+        <div class="form-step">
+          <label for="steps">Étapes :</label>
+          <div
+            v-for="(step, index) in Object.keys(form.steps)"
+            :key="index"
+            class="step"
+          >
+            <div>
+              <label>Titre de l'étape :</label>
+              <input type="text" v-model="form.steps[step].title" />
+            </div>
+            <div>
+              <label>Description de l'étape :</label>
+              <input type="text" v-model="form.steps[step].description" />
+            </div>
+          </div>
 
+          <button @click.prevent="addStep">Ajouter une étape</button>
+        </div>
+
+        <div class="form-step">
+          <input type="submit" value="Valider" />
+        </div>
+      </form>
+    </section>
   </main>
 </template>
 
@@ -102,7 +143,7 @@ const categoriesData = ref([]);
 const difficultiesData = ref([]);
 const ingredientsData = ref([]);
 const toolsData = ref([]);
-const successMessage = ref('');
+const successMessage = ref("");
 
 const selectedIngredients = ref([]);
 const selectedTools = ref([]);
@@ -116,15 +157,15 @@ const form = reactive({
   difficulty_id: "",
   cooking_time_s: "",
   ingredients: {},
-  tools: [],
+  tools: {},
   steps: {
     1: { title: "", description: "" },
-  }
+  },
 });
 
 function getCategories() {
   axios
-  .get(`http://127.0.0.1:5000/categories`)
+    .get(`http://127.0.0.1:5000/categories`)
     .then((response) => {
       categoriesData.value = response.data;
     })
@@ -135,7 +176,7 @@ function getCategories() {
 
 function getDifficulties() {
   axios
-  .get(`http://127.0.0.1:5000/difficulties`)
+    .get(`http://127.0.0.1:5000/difficulties`)
     .then((response) => {
       difficultiesData.value = response.data;
     })
@@ -146,7 +187,7 @@ function getDifficulties() {
 
 function getIngredients() {
   axios
-  .get(`http://127.0.0.1:5000/ingredients`)
+    .get(`http://127.0.0.1:5000/ingredients`)
     .then((response) => {
       ingredientsData.value = response.data;
     })
@@ -155,14 +196,16 @@ function getIngredients() {
     });
 }
 
-function getIngredientName(ingredientId) {
-  const ingredient = ingredientsData.value.find((item) => item.id === parseInt(ingredientId));
-  return ingredient ? ingredient.name : "";
+function getIngredient(ingredientId) {
+  const ingredient = ingredientsData.value.find(
+    (item) => item.id === parseInt(ingredientId)
+  );
+  return ingredient ? ingredient : "";
 }
 
 function getTools() {
   axios
-  .get(`http://127.0.0.1:5000/tools`)
+    .get(`http://127.0.0.1:5000/tools`)
     .then((response) => {
       toolsData.value = response.data;
     })
@@ -170,7 +213,7 @@ function getTools() {
       console.error(error);
     });
 }
-  
+
 function addStep() {
   const newStepIndex = Object.keys(form.steps).length + 1;
   form.steps[newStepIndex] = reactive({ title: "", description: "" });
@@ -186,8 +229,11 @@ function submitForm() {
       quantity: ingredientQuantities[ingredientId],
     };
   });
-  form.ingredients = ingredients;
-  form.tools = [...selectedTools.value];
+  const tools = selectedTools.value.map((toolId) => {
+    return {
+      id: toolId,
+    };
+  });
   const steps = Object.keys(form.steps).map((stepNumber) => {
     const step = form.steps[stepNumber];
     return {
@@ -196,33 +242,42 @@ function submitForm() {
       description: step.description,
     };
   });
-
+  
+  form.ingredients = ingredients;
+  form.tools = tools;
   form.steps = steps;
-  console.log(form);
 
   axios
     .post("http://127.0.0.1:5000/recipe", form)
     .then((response) => {
-      console.log(response.data);
-      successMessage.value = 'La recette a été ajoutée avec succès !';
-      form.recipe_name = '';
-      form.cooker_name = '';
-      form.picture = '';
-      form.category_id = '';
-      form.difficulty_id = '';
-      form.cooking_time_s = '';
-      form.ingredients = {};
-      form.tools = [];
-      form.steps = {1: { title: "", description: "" },};
+      console.log("recipe created", response.data);
+      successMessage.value = `La recette ${response.data.name} a été ajoutée avec succès !`;
     })
     .catch((error) => {
       console.error(error);
     });
 }
 
-  getCategories();
-  getDifficulties();
-  getIngredients();
-  getTools();
-
+getCategories();
+getDifficulties();
+getIngredients();
+getTools();
 </script>
+
+<style scoped>
+.input-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.form-step {
+  margin-block: 1rem;
+}
+section {
+  display: flex;
+  flex-direction: column;
+}
+.step {
+  margin-bottom: 1rem;
+}
+</style>

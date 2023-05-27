@@ -199,7 +199,8 @@ def get_ingredients():
     for ingredient in ingredients_rows:
         ingredient_data = {
             'id': ingredient[0],
-            'name': ingredient[1]
+            'name': ingredient[1],
+            'unit': ingredient[2]
         }
         ingredients_list.append(ingredient_data)
 
@@ -213,7 +214,7 @@ def get_ingredients():
 def get_ingredient(ingredient_id):
     conn = sqlite3.connect('database/imacook.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT id, name FROM ingredients WHERE id = ? LIMIT 1", (ingredient_id,))
+    cursor.execute("SELECT id, name, unit FROM ingredients WHERE id = ? LIMIT 1", (ingredient_id,))
     ingredient_row = cursor.fetchone()
 
     if not ingredient_row:
@@ -221,7 +222,8 @@ def get_ingredient(ingredient_id):
 
     ingredient_data = {
         'id': ingredient_row[0],
-        'name': ingredient_row[1]
+        'name': ingredient_row[1],
+        'unit': ingredient_row[2]
     }
 
     conn.close()

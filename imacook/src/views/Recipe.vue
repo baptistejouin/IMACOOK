@@ -2,7 +2,7 @@
   <main>
     <div
       class="header_recette"
-      :style="`background-image: url(${recipeData.picture});`"
+      :style="`background-image: url('${recipeData.picture}');`"
     >
       <div class="header_recette-gradient"></div>
       <div class="header_recette-infos">
@@ -91,7 +91,11 @@
         <div class="ingredients_recette">
           <div class="ingredients_title">
             <div class="title">
-              <svg class="icon_title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.87 69.69">
+              <svg
+                class="icon_title"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 69.87 69.69"
+              >
                 <g id="Calque_2" data-name="Calque 2">
                   <g id="Calque_1-2" data-name="Calque 1">
                     <path
@@ -109,7 +113,10 @@
             </div>
             <div class="number_selector">
               <button id="removeGuest" @click="decrement">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.59 45.59">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 45.59 45.59"
+                >
                   <g id="Calque_2" data-name="Calque 2">
                     <g id="Calque_1-2" data-name="Calque 1">
                       <path
@@ -124,9 +131,14 @@
                   </g>
                 </svg>
               </button>
-              <p class="guest">{{ count }} personne{{ count >1 ? "s" : "" }}</p>
+              <p class="guest">
+                {{ count }} personne{{ count > 1 ? "s" : "" }}
+              </p>
               <button id="addGuest" @click="increment">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.6 45.59">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 45.6 45.59"
+                >
                   <g id="Calque_2" data-name="Calque 2">
                     <g id="Calque_1-2" data-name="Calque 1">
                       <path
@@ -144,10 +156,14 @@
             </div>
           </div>
           <div class="ingredients_container">
-            <div v-for="ingredient in recipeData.ingredients" class="ingredient">
+            <div
+              v-for="ingredient in recipeData.ingredients"
+              class="ingredient"
+            >
               <p>{{ ingredient.name }}</p>
               <p class="strong">
-                <span>{{ ingredient.quantity * count }}</span> {{ ingredient.unit }}
+                <span>{{ ingredient.quantity * count }}</span>
+                {{ ingredient.unit }}
               </p>
             </div>
           </div>
@@ -156,9 +172,19 @@
         <div class="ingredients_recette">
           <div class="ingredients_title">
             <div class="title">
-              <svg class="icon_title" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M5.5 5.5V38.5H15.7V32.0999H12.5C11.1193 32.0999 10 30.9806 10 29.5999C10 28.2192 11.1193 27.0999 12.5 27.0999H15.7V20.7L12.5 20.7001C11.1193 20.7001 10 19.5808 10 18.2001C9.99998 16.8194 11.1193 15.7001 12.5 15.7001L15.6997 15.7V12.5C15.6997 11.1193 16.819 10 18.1997 10C19.5804 10 20.6997 11.1193 20.6997 12.5V15.7H27.1004V12.5C27.1004 11.1193 28.2197 10 29.6004 10C30.9811 10 32.1004 11.1193 32.1004 12.5V15.7H38.5V5.5H5.5ZM39.86 20.7C41.8705 20.7 43.5 19.0702 43.5 17.06V4.14C43.5 2.12977 41.8705 0.5 39.86 0.5H4.14C2.12968 0.5 0.5 2.12968 0.5 4.14V39.86C0.5 41.8705 2.12977 43.5 4.14 43.5H17.06C19.0702 43.5 20.7 41.8705 20.7 39.86V20.7H39.86Z" fill="#7F4F12"/>
-</svg>
+              <svg
+                class="icon_title"
+                viewBox="0 0 44 44"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M5.5 5.5V38.5H15.7V32.0999H12.5C11.1193 32.0999 10 30.9806 10 29.5999C10 28.2192 11.1193 27.0999 12.5 27.0999H15.7V20.7L12.5 20.7001C11.1193 20.7001 10 19.5808 10 18.2001C9.99998 16.8194 11.1193 15.7001 12.5 15.7001L15.6997 15.7V12.5C15.6997 11.1193 16.819 10 18.1997 10C19.5804 10 20.6997 11.1193 20.6997 12.5V15.7H27.1004V12.5C27.1004 11.1193 28.2197 10 29.6004 10C30.9811 10 32.1004 11.1193 32.1004 12.5V15.7H38.5V5.5H5.5ZM39.86 20.7C41.8705 20.7 43.5 19.0702 43.5 17.06V4.14C43.5 2.12977 41.8705 0.5 39.86 0.5H4.14C2.12968 0.5 0.5 2.12968 0.5 4.14V39.86C0.5 41.8705 2.12977 43.5 4.14 43.5H17.06C19.0702 43.5 20.7 41.8705 20.7 39.86V20.7H39.86Z"
+                  fill="#7F4F12"
+                />
+              </svg>
 
               <h2>Ustensile</h2>
             </div>
@@ -172,40 +198,44 @@
             </div>
           </div>
         </div>
+      </div>
     </div>
-  </div>
   </main>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import Navbar from "@/components/Navbar.vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
 
 const route = useRoute();
+const router = useRouter();
 const recipeId = route.params.id;
 
 const recipeData = ref([]);
-const count = ref(1)
+const count = ref(1);
 
 function getData() {
   axios
     .get(`http://127.0.0.1:5000/recipe/${recipeId}`)
     .then((response) => {
       recipeData.value = response.data;
+      console.log(response.data);
     })
     .catch((error) => {
       console.error(error);
+      // redirect to 404
+      router.push({ path: "/404" });
     });
 }
 
 function increment() {
-    count.value++
+  count.value++;
 }
 function decrement() {
-  if(count.value > 1) {
-  count.value--
+  if (count.value > 1) {
+    count.value--;
   }
 }
 
