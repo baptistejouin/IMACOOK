@@ -48,7 +48,7 @@
           v-show="isSelected == recipe.category.id || isSelected == -1"
           class="recipe_accueil"
         >
-          <a :href="`/recipe/${recipe.id}`">
+          <router-link :to="`/recipe/${recipe.id}`">
             <div
               class="accueil-info accueil-img"
               :style="`background-image: url('${recipe.picture}')`"
@@ -82,7 +82,7 @@
               </svg>
               <p id="recipe_cat">{{ recipe.category.name }}</p>
             </div>
-          </a>
+          </router-link>
         </div>
       </template>
     </div>
@@ -91,6 +91,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { API_ENDPOINT } from "@/app.config.js";
 import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
 
@@ -100,7 +101,7 @@ const isSelected = ref("-1");
 
 function getData() {
   axios
-    .get(`http://127.0.0.1:5000/recipes`)
+    .get(`${API_ENDPOINT}/recipes`)
     .then((response) => {
       recipesData.value = response.data;
     })
@@ -111,7 +112,7 @@ function getData() {
 
 function getCategories() {
   axios
-    .get(`http://127.0.0.1:5000/categories`)
+    .get(`${API_ENDPOINT}/categories`)
     .then((response) => {
       categoriesData.value = response.data;
       console.log(categoriesData.value);

@@ -5,14 +5,6 @@ import sqlite3
 app = Flask(__name__)
 CORS(app)
 
-# define MySQL connection parameters
-db_config = {
-    'user': 'root',
-    'password': '',
-    'host': 'localhost',
-    'database': 'imacook'
-}
-
 # get all recipes
 @app.route('/recipes', methods=['GET'])
 def get_recipes():

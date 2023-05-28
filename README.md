@@ -78,6 +78,12 @@ npm install
 # launch python/flask
 flask --app app --debug run
 
+# go in the front folder
+cd imacook
+
+# setup api url (localhost in our case)
+cp dist.env .env
+
 # lauch the front
-cd imacook && npm run dev
+npm run dev
 ```
