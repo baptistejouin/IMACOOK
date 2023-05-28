@@ -100,6 +100,7 @@
 
 <script setup>
 import { ref, reactive, watchEffect } from "vue";
+import { API_ENDPOINT } from "@/app.config.js";
 import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
 
@@ -112,6 +113,8 @@ const successMessage = ref("");
 const selectedIngredients = ref([]);
 const selectedTools = ref([]);
 const ingredientQuantities = reactive({});
+
+// log env variable
 
 const form = reactive({
   name: "",
@@ -129,7 +132,7 @@ const form = reactive({
 
 function getCategories() {
   axios
-    .get(`http://127.0.0.1:5000/categories`)
+    .get(`${API_ENDPOINT}/categories`)
     .then((response) => {
       categoriesData.value = response.data;
     })
@@ -140,7 +143,7 @@ function getCategories() {
 
 function getDifficulties() {
   axios
-    .get(`http://127.0.0.1:5000/difficulties`)
+    .get(`${API_ENDPOINT}/difficulties`)
     .then((response) => {
       difficultiesData.value = response.data;
     })
@@ -151,7 +154,7 @@ function getDifficulties() {
 
 function getIngredients() {
   axios
-    .get(`http://127.0.0.1:5000/ingredients`)
+    .get(`${API_ENDPOINT}/ingredients`)
     .then((response) => {
       ingredientsData.value = response.data;
     })
@@ -169,7 +172,7 @@ function getIngredient(ingredientId) {
 
 function getTools() {
   axios
-    .get(`http://127.0.0.1:5000/tools`)
+    .get(`${API_ENDPOINT}/tools`)
     .then((response) => {
       toolsData.value = response.data;
     })
@@ -212,7 +215,7 @@ function submitForm() {
   form.steps = steps;
 
   axios
-    .post("http://127.0.0.1:5000/recipe", form)
+    .post(`${API_ENDPOINT}/recipe`, form)
     .then((response) => {
       console.log("recipe created", response.data);
       successMessage.value = `La recette ${response.data.name} a été ajoutée avec succès !`;

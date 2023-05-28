@@ -10,7 +10,7 @@
 
       <div class="listrecipes">
         <template v-for="recipe in filteredRecipes" :key="recipe.id">
-          <a class="recipe" :href="`/recipe/${recipe.id}`">
+          <router-link class="recipe" :to="`/recipe/${recipe.id}`">
             <div
               class="search-info search-img"
               :style="`background-image: url('${recipe.picture}')`"
@@ -59,7 +59,7 @@
               </svg>
               <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }}</p>
             </div>
-          </a>
+          </router-link>
         </template>
       </div>
     </div>
@@ -67,6 +67,7 @@
 </template>
 <script setup>
 import { ref, watch } from "vue";
+import { API_ENDPOINT } from "@/app.config.js";
 import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
 
@@ -76,7 +77,7 @@ const search = ref("");
 
 function getData() {
   axios
-    .get(`http://127.0.0.1:5000/recipes`)
+    .get(`${API_ENDPOINT}/recipes`)
     .then((response) => {
       recipesData.value = response.data;
       filterRecipes();

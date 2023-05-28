@@ -205,6 +205,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { API_ENDPOINT } from "@/app.config.js";
 import Navbar from "@/components/Navbar.vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
@@ -218,7 +219,7 @@ const count = ref(1);
 
 function getData() {
   axios
-    .get(`http://127.0.0.1:5000/recipe/${recipeId}`)
+    .get(`${API_ENDPOINT}/recipe/${recipeId}`)
     .then((response) => {
       recipeData.value = response.data;
       console.log(response.data);
