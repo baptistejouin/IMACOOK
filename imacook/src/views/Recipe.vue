@@ -6,7 +6,16 @@
     >
       <div class="header_recette-gradient"></div>
       <div class="header_recette-infos">
-        <Navbar />
+        <div class="navbar_recipe">
+        <router-link class="logo" to="/">IMACook</router-link>
+        <div class="icon">
+            <router-link class="icon_svg" to="/search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 67.25 64.86"><g id="Calque_2" data-name="Calque 2"><g id="Calque_1-2" data-name="Calque 1"><path class="cls-1" d="M66.48,60.27l-15-15a28.64,28.64,0,1,0-3.6,4l14.8,14.8a2.67,2.67,0,0,0,3.76,0l.06-.06A2.67,2.67,0,0,0,66.48,60.27ZM28.47,51A22.55,22.55,0,1,1,51,28.47,22.55,22.55,0,0,1,28.47,51Z"/></g></g></svg></router-link>
+            <router-link class="icon_svg" to="/add">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.59 45.58"><g id="Calque_2" data-name="Calque 2"><g id="Calque_1-2" data-name="Calque 1"><path class="cls-1" d="M32.29,22.51v.55a2.61,2.61,0,0,1-2.6,2.6h-4v4a2.59,2.59,0,0,1-2.59,2.59h-.55a2.6,2.6,0,0,1-2.6-2.59v-4h-4a2.6,2.6,0,0,1-2.59-2.6v-.55a2.59,2.59,0,0,1,2.59-2.59h4v-4a2.61,2.61,0,0,1,2.6-2.6h.55a2.6,2.6,0,0,1,2.59,2.6v4h4A2.6,2.6,0,0,1,32.29,22.51Z"/><path class="cls-1" d="M31.52,0H14.07A14.09,14.09,0,0,0,0,14.07V31.51A14.09,14.09,0,0,0,14.07,45.58H31.52A14.09,14.09,0,0,0,45.59,31.51V14.07A14.09,14.09,0,0,0,31.52,0ZM41,30.86A10.15,10.15,0,0,1,30.87,41H14.72A10.14,10.14,0,0,1,4.59,30.86V14.72A10.14,10.14,0,0,1,14.72,4.59H30.87A10.14,10.14,0,0,1,41,14.72Z"/></g></g></svg>
+            </router-link>
+        </div>
+    </div>
         <div class="header_recette-titre">
           <p>{{ recipeData.name }}</p>
         </div>
@@ -87,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div class="right_section">
+      <div class="tools_recette">
         <div class="ingredients_recette">
           <div class="ingredients_title">
             <div class="title">
@@ -169,7 +178,7 @@
           </div>
         </div>
 
-        <div class="ingredients_recette">
+        <div class="ingredients_recette ustensile_besoin">
           <div class="ingredients_title">
             <div class="title">
               <svg
@@ -242,247 +251,3 @@ function decrement() {
 
 getData();
 </script>
-
-<style scoped>
-.right_section {
-  width: 46%;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-.header_recette {
-  width: 100%;
-  position: relative;
-  background: black;
-  border-radius: 60px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 400px;
-}
-.header_recette-gradient {
-  border-radius: 60px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.4962359943977591) 0%,
-    rgba(0, 0, 0, 0) 40%,
-    rgba(0, 0, 0, 0) 70%,
-    rgba(0, 0, 0, 0.4962359943977591) 100%
-  );
-}
-.header_recette-infos {
-  padding: var(--padding);
-  align-content: space-between;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: space-between;
-}
-.header_recette-titre {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-}
-.header_recette-titre p {
-  font-family: var(--regular-font);
-  font-size: var(--big-font-size);
-  color: var(--second-color);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.tips_recette {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 25px 0px 50px 0px;
-}
-.tips_recette-content {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.tips_recette-content svg {
-  fill: var(--first-color);
-  width: var(--icon_min_height);
-  height: var(--icon_min_height);
-  margin: 0px 8px 0px 0px;
-}
-.tips_recette-content p {
-  font-family: var(--regular-font);
-  font-size: var(--normal-font-size);
-  color: var(--first-color);
-  text-decoration: none;
-  font-weight: 600;
-  margin: 0px 50px 0px 0px;
-}
-
-.infos_recette {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin: 25px 0px;
-}
-.instructions_recette {
-  width: 46%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-.instructions_title {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.instructions_title svg {
-  width: var(--icon_max_height);
-  height: var(--icon_max_height);
-  fill: var(--first-color);
-  margin: 0px 8px 0px 0px;
-}
-.instructions_title h2 {
-  font-family: var(--regular-font);
-  font-size: var(--medium-font-size);
-  color: var(--first-color);
-  text-decoration: none;
-  font-weight: 700;
-}
-.instructions_container {
-  margin: 20px 0px 0px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.instruction {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  margin-bottom: 25px;
-}
-.instrcution_index {
-  background-color: var(--fourth-color);
-  border-radius: 50%;
-  min-width: var(--icon_max_height);
-  height: var(--icon_max_height);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--regular-font);
-  font-size: var(--medium-font-size);
-  color: var(--first-color);
-  font-weight: 700;
-}
-.instruction_content {
-  margin: 0px 0px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: flex-start;
-}
-.instruction_content h3 {
-  font-family: var(--regular-font);
-  font-size: var(--normal-font-size);
-  color: var(--first-color);
-  margin: 0px 0px 5px 0px;
-  font-weight: 700;
-}
-.instruction_content p {
-  font-family: var(--regular-font);
-  font-size: var(--normal-font-size);
-  color: var(--first-color);
-}
-.ingredients_recette {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-.ingredients_title {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.ingredients_title .title {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.ingredients_title .title svg {
-  width: var(--icon_normal_height);
-  height: var(--icon_normal_height);
-  fill: var(--first-color);
-  margin: 0px 8px 0px 0px;
-}
-.ingredients_title .title h2 {
-  font-family: var(--regular-font);
-  font-size: var(--medium-font-size);
-  color: var(--first-color);
-  text-decoration: none;
-  font-weight: 700;
-}
-.number_selector {
-  display: flex;
-  align-items: center;
-}
-.number_selector p {
-  font-family: var(--regular-font);
-  font-size: var(--normal-font-size);
-  color: var(--first-color);
-  margin: 0px 10px;
-  font-weight: 700;
-}
-.number_selector button {
-  width: var(--icon_min_height);
-  height: var(--icon_min_height);
-  cursor: pointer;
-  outline: none;
-  border: none;
-}
-.number_selector button svg {
-  fill: var(--first-color);
-}
-.ingredients_container {
-  width: 100%;
-  margin: 20px 0px 0px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.ingredient {
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 15px;
-  border-radius: var(--button-radius);
-  background-color: white;
-  box-shadow: rgba(149, 157, 165, 0.08) 0px 8px 24px;
-}
-.ingredient p {
-  font-family: var(--regular-font);
-  font-size: var(--normal-font-size);
-  color: var(--first-color);
-  font-weight: 100;
-}
-.ingredient .strong {
-  font-weight: 600;
-}
-</style>
