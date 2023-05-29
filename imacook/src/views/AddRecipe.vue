@@ -36,8 +36,8 @@
       </div>
 
       <div class="form_recette-input form_recette-time">
-        <label for="timing">Durée de la recette (en secondes)</label>
-        <input type="number" id="timing" v-model="form.cooking_time_s" min="0" required/>
+        <label for="timing">Durée de la recette (en minutes)</label>
+        <input type="number" id="timing" placeholder="60" v-model="form.cooking_time_s" min="0" required/>
       </div>
 
       <div class="form_medium-title">
@@ -69,7 +69,7 @@
 
       <div class="form_recette-input">
         <div class="ustensilles_container-title">
-          <label for="ustensilless_title">Sélectionner des ustensilles</label>
+          <label for="ustensilless_title">Sélectionner des ustensiles</label>
           <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M112 184l144 144 144-144"/></svg>
         </div>
         <div class="drop_down-ustensilles" style="height:0px;">
@@ -213,6 +213,7 @@ function submitForm() {
   form.ingredients = ingredients;
   form.tools = tools;
   form.steps = steps;
+  form.cooking_time_s = form.cooking_time_s*60;
 
   axios
     .post(`${API_ENDPOINT}/recipe`, form)

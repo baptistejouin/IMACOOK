@@ -87,7 +87,7 @@
           </div>
         </div>
       </div>
-      <div class="right_section">
+      <div class="tools_recette">
         <div class="ingredients_recette">
           <div class="ingredients_title">
             <div class="title">
@@ -169,7 +169,7 @@
           </div>
         </div>
 
-        <div class="ingredients_recette">
+        <div class="ingredients_recette ustensile_besoin">
           <div class="ingredients_title">
             <div class="title">
               <svg

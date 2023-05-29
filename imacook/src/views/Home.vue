@@ -67,7 +67,7 @@
                   </g>
                 </g>
               </svg>
-              <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }}</p>
+              <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }} min</p>
             </div>
             <div class="accueil-info">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58.46 58.46">

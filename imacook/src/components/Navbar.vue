@@ -11,50 +11,5 @@
     </div>
 </template>
 
-<style scoped>
-.navbar{
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--padding);
-  padding-top: 0;
-}
-.logo{
-    font-family:var(--regular-font);
-    font-size:var(--medium-font-size);
-    color:var(--second-color);
-    text-decoration: none;
-    font-weight: 600;
-}
-.dark .logo {
-  color: black;
-}
-.links a{
-    font-family:var(--regular-font);
-    font-size:var(--normal-font-size);
-    color:var(--second-color);
-    text-decoration: none;
-    margin:0px 25px;
-}
-.dark .links a {
-  color: black;
-}
-.icon{
-    display: flex;
-    justify-content: space-between;
-}
-.icon_svg svg{
-    width:var(--icon_min_height);
-    height:var(--icon_min_height);
-    margin:0px 0px 0px 30px;
-    fill:var(--second-color);
-}
-
-.dark .icon_svg svg {
-    fill: black;
-}
-</style>
-
 <script setup>
 </script>
