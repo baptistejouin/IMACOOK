@@ -57,7 +57,7 @@
                   </g>
                 </g>
               </svg>
-              <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }}</p>
+              <p id="recipe_time">{{ parseInt(recipe.cooking_time_s / 60) }} min</p>
             </div>
           </router-link>
         </template>
