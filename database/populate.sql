@@ -67,6 +67,9 @@ INSERT INTO tools (name) VALUES ('Moule à tarte');
 INSERT INTO tools (name) VALUES ('Moule à pizza');
 INSERT INTO tools (name) VALUES ('Moule à cake');
 
+
+INSERT INTO ingredients (name, unit) VALUES ('Lardons', 'g');
+INSERT INTO ingredients (name, unit) VALUES ('Oeuf', 'unité');
 INSERT INTO ingredients (name, unit) VALUES ('Sel', 'g');
 INSERT INTO ingredients (name, unit) VALUES ('Poivre', 'g');
 INSERT INTO ingredients (name, unit) VALUES ('Huile d\'olive', 'ml');
