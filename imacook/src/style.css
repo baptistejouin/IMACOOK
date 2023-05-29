@@ -109,6 +109,15 @@ a{
   text-decoration: none;
 }
 
+.success-message{
+  width:100%;
+  text-align:center;
+  font-family:var(--regular-font);
+  font-size:var(--normal-font-size);
+  color: var(--first-color);
+  font-weight:600;
+  margin:25px 0px;
+}
 
 
 
