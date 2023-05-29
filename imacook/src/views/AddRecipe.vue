@@ -99,7 +99,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, watchEffect } from "vue";
+import { ref, reactive, watchEffect, onMounted } from "vue";
 import { API_ENDPOINT } from "@/app.config.js";
 import Navbar from "@/components/Navbar.vue";
 import axios from "axios";
@@ -234,7 +234,7 @@ getTools();
 
 // ----------------------------------------------------------- //
 
-document.addEventListener("DOMContentLoaded", function() {
+onMounted(() => {
   const title = document.querySelector(".ingredients_container-title");
   const dropdown = document.querySelector(".drop_down-ingredients");
   const arrow = document.querySelector(".ingredients_container-title svg");
@@ -264,6 +264,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
   title2.addEventListener("click", toggleDropdown2);
-});
+})
 
 </script>

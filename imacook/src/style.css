@@ -249,6 +249,7 @@ a{
   color: var(--first-color);
   outline:none;
   border:none;
+  margin-inline: auto 1rem;
 }
 .form_medium-title{
   width:100%;
