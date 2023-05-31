@@ -398,8 +398,8 @@ def add_step():
 
     id_recipe = params["id_recipe"]
     step_number = params["step_number"]
-    step_title = params["step_title"]
-    step_description = params["step_description"]
+    step_title = params["title"]
+    step_description = params["description"]
 
     conn = sqlite3.connect('database/imacook.db')
     cursor = conn.cursor()
