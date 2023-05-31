@@ -392,7 +392,7 @@ def delete_step(step_id):
         return jsonify({'error': 'step not found'}), 404
     
 # add one step
-@app.route('/step/add', methods=['POST'])
+@app.route('/step', methods=['POST'])
 def add_step():
     params = request.get_json()
 
