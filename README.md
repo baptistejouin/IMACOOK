@@ -2,6 +2,8 @@
 
 ## Programmation Web - IMACS2
 Projet mené dans le cadre du cours de programmation web (école d’ingénieurs IMAC).
+<br>
+&copy; @baptistejouin @coraliebnnd @EliottDvx @Mathiio
 
 ### Entity Relationship Diagram
 ![IMACOOK DATABASE](https://cdn.discordapp.com/attachments/1092781041342763118/1109525732893397143/dbdiagram.io_d.png)
@@ -40,7 +42,7 @@ _NOTE: See [the documentation of the request](/docs/resquest.md) for more info._
 | status | result | method | endpoint | params |
 | --------- | --------- | --------- | --------- | --------- |
 | OK | get one step | GET | `/step/<id>` | |
-| OK | update the title and description of one step | PATCH | `/step/<id>`
+| OK | update the title and description of one step | PATCH | `/step/<id>` | `[{step_number, title, description}]` |
 | OK | delete one step | DELETE | `/step/<id>` | |
 | OK | create one step | POST | `/step` | `[{id_recipe, title, description, step_number}]` |
 
