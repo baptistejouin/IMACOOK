@@ -224,15 +224,31 @@ function submitForm() {
     .catch((error) => {
       console.error(error);
     });
+
+    // With fetch api
+
+    // fetch(`${API_ENDPOINT}/recipe`, {
+    //   method: "POST",
+    //   body: JSON.stringify(form),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("recipe created", data);
+    //     successMessage.value = `La recette ${data.name} a été ajoutée avec succès !`;
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+
 }
 
 getCategories();
 getDifficulties();
 getIngredients();
 getTools();
-
-
-// ----------------------------------------------------------- //
 
 onMounted(() => {
   const title = document.querySelector(".ingredients_container-title");
