@@ -215,6 +215,22 @@ function submitForm() {
   form.steps = steps;
   form.cooking_time_s = form.cooking_time_s*60;
 
+  // check if all field is filled
+  if (
+    form.name === "" ||
+    form.cooker === "" ||
+    form.picture === "" ||
+    form.category_id === "" ||
+    form.difficulty_id === "" ||
+    form.cooking_time_s === "" ||
+    form.ingredients === {} ||
+    form.tools === {} ||
+    form.steps === {}
+  ) {
+    alert("Veuillez remplir tous les champs");
+    return;
+  }
+
   axios
     .post(`${API_ENDPOINT}/recipe`, form)
     .then((response) => {
